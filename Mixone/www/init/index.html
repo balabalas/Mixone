@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>init</title>
+
+    <!-- WinJS 引用 -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <!-- Mixone 引用 -->
+    <link href="/css/default.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/css/init.css" />
+    
+    <script src="/js/init/buttonClick.js"></script>
+    </head>
+    <body>
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+        </header>        
+        <div id="initRootGrid">
+            <div id="header" role="contentinfo" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: '/www/init/head.html'}"></div>
+            <div id="loginStatus" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: '/www/init/status.html'}"></div>
+            <div id="mainContent" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: '/www/init/main.html'}"></div>
+        </div>
+    </body>
+</html>

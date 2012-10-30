@@ -1,0 +1,130 @@
+﻿@media screen and (min-width: 400px)
+{
+	body {
+		background-color: #DBEAF9;
+		width:100%;
+		height: auto;
+	}
+	
+	#header {
+		width: 100%;
+		height: 10em;
+		position: relative;
+	}
+	
+	#mixonetitle {
+		display: inline-block;
+		position: absolute;
+		left: 1em;
+		bottom: .5em;
+		font-size: 3em;
+	}
+	
+	#content {
+		
+		width: 50%;
+		margin: 0 auto;
+		
+	}
+}
+
+
+@media screen and (max-width: 400px)
+{
+	body {
+		width: 100%;
+		height: auto;
+	}
+	
+	#header {
+		display: none;
+	}
+	
+	#content {
+		width: 100%;
+		height: auto;
+		
+	}
+	
+	.buttonGroup {
+		display:none;
+	}
+	
+}
+
+#content li {
+	border-bottom: 1px solid #0000ee;
+	padding: 0;
+	padding-bottom: .3em;
+	margin-bottom: .3em;
+	
+}
+
+.userAvart {
+	display: block;
+	float: left;
+	width: auto;
+	height: 100%;
+	margin-left: .3em;
+}
+
+.textContent {
+	display: block;
+	margin-left: 60px;
+	padding: 0;
+	width: auto;
+	height: auto;
+}
+
+.clearfix {
+	clear: both;
+}
+
+.retweeted {
+	background: #5A9BD3;
+	margin: 0.9em 1em 0 0.5em;
+	width: auto;
+	position: relative;
+	border-radius: 2px 0 0 0;
+	padding: .5em;
+    text-indent: 0.2em;
+}
+
+.retweeted:after, .retweeted:before {
+	bottom: 100%;
+	border: solid transparent;
+	content: ' ';
+	height: 0;
+	width: 0;
+	position: absolute;
+    
+}
+
+.retweeted:after {
+	border-color: rgba(136,183,213,0);
+	border-bottom-color: #5A9BD3;
+	border-width: 9px;
+	left: 13px;
+	margin-left: -9px;
+	
+}
+
+.retweeted:before {
+	border-color: rgba(194,225,245,0);
+	border-bottom-color: #5A9BD3;
+	border-width: 12px;
+	left: 13px;
+	margin-left: -12px;
+}
+
+.screen_name {
+	color: #00004f;
+}
+
+.fromeAndTime {
+	margin-bottom: -0.5em;
+}
+
+ul {
+    list-style: none;
+}

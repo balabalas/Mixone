@@ -1,0 +1,72 @@
+﻿body {
+    width: 100%;
+    height: 100%;
+}
+
+#contentGrid div {
+    background-color: blue;
+    margin: 10px;
+}
+
+#contentGrid button {
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (min-width: 760px) {
+    #contentGrid {
+        width: 70vw;
+        height: 100vh;
+        display: -ms-grid;
+        -ms-grid-columns: 30vw 30vw;
+        -ms-grid-rows: 28vh 28vh;
+        margin-top: 5vh;
+    }
+
+    #gridBox1 {
+        -ms-grid-column: 1;
+        -ms-grid-row: 1;
+
+    }
+    #gridBox2 {
+        -ms-grid-column: 2;
+        -ms-grid-row: 1;
+    }
+    #gridBox3 {
+        -ms-grid-column: 1;
+        -ms-grid-row: 2;
+    }
+    #gridBox4 {
+        -ms-grid-column: 2;
+        -ms-grid-row: 2;
+    }
+}
+
+@media (-ms-view-state: filled) {
+    
+}
+
+@media (-ms-view-state: snapped) {
+    #contentGrid div {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 2vh;
+    }
+}
+
+@media (-ms-view-state: fullscreen-portrait) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
