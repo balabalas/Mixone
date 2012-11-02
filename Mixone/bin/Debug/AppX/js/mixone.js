@@ -7,7 +7,8 @@ var MixOne;
     MixOne = {};
     MixOne.Status = {};
     MixOne.etc = {
-        checkNetwork: checkNetwork
+        checkNetwork: checkNetwork,
+        getUser: getUserInfo
     };
     MixOne.News = {};
 
@@ -35,7 +36,7 @@ var MixOne;
             refreshToken: '',
             refreshTXToken: refreshTXToken,
             getCode: getTXCode,
-            getToke: getTXToken,
+            getToken: getTXToken,
             getNews: getTXWeibo
         },
         Sina: {
@@ -50,17 +51,14 @@ var MixOne;
         },
         RR: {
             appkey: '63df73f39cd84f28959aaa0bc0da4734',
-            appsecret: '0a4958793e8247be91adb6cda2019dcd'
+            appsecret: '0a4958793e8247be91adb6cda2019dcd',
+            codeURL: 'https://graph.renren.com/oauth/authorize',
+            tokenURL: 'https://graph.renren.com/oauth/authorize',
+            redirectURL:'http://graph.renren.com/oauth/login_success.html',
+            getToken: getRRToken
         },
         KX: {}
     };
-
-    var loginStorage = localStorage.getItem('loginFlag'),
-        loginStatus = {};
-
-    if (loginStorage !== null && loginStorage !== undefined) {
-        loginStatus = JSON.parse(loginStorage);
-    }
 
     MixOne.Status.TX = {};
     MixOne.Status.Sina = {};
@@ -71,52 +69,117 @@ var MixOne;
             getNews: getTXWeibo
         },
         Sina: {
-            getNews: getSinaWeibo
+            getNews: getSinaWeibo,
+
         },
         RR: {},
         KX: {}
-    }
-
-    if (loginStatus) {
-        //tx login status
-        if (loginStatus.TX && loginStatus.TX.login) {
-            MixOne.Status.TX.login = true;
-            MixOne.Status.TX.username = loginStatus.TX.username;
-        }
-        else {
-            MixOne.Status.TX.login = false;
-        }
-        //sina login status
-        if (loginStatus.Sina && loginStatus.Sina.login) {
-            MixOne.Status.Sina.login = true;
-            MixOne.Status.Sina.username = loginStatus.Sina.username;
-        }
-        else {
-            MixOne.Status.Sina.login = false;
-        }
-        //rr login status
-        if (loginStatus.RR && loginStatus.RR.login) {
-            MixOne.Status.RR.login = true;
-            MixOne.Status.RR.username = loginStatus.RR.username;
-        }
-        else {
-            MixOne.Status.RR.login = false;
-        }
-        //kx login status
-        if (loginStatus.KX && loginStatus.KX.login) {
-            MixOne.Status.KX.login = true;
-            MixOne.Status.KX.username = loginStatus.KX.username;
-        }
-        else {
-            MixOne.Status.KX.login = false;
-        }
-        
     }
 
     function initMixone() {
         getIpAddress();
         WinJS.Namespace.define('MixOne',MixOne);
     }
+
+    /**
+    * Get user info
+    *
+    **/
+    function getUserInfo(type,o) {
+
+        var url = '',
+            target = {};
+        switch (type) {
+            case 'sina': (function () {
+                url = 'https://api.weibo.com/2/users/show.json?access_token=' +
+                    o.token + '&uid=' + o.uid;
+                target = MixOne.Status.Sina;
+            })(); break;
+            case 'tx': (function () {
+                url = '';
+                target = MixOne.Status.TX;
+            })(); break;
+            case 'rr': (function () {
+                url = '';
+                target = MixOne.Status.RR;
+            })(); break;
+            default: url = '';
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.timeout = 10000;
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var res = xhr.responseText;
+                    if (res !== null && res !== undefined) {
+                        var data = JSON.parse(res);
+                        target.login = true;
+                        target.token = o.token;
+                        target.uid = o.uid;
+                        _getPersonInfo(data,target);
+                    }
+                }
+                else {
+                    //when get the wrong messages.
+                    if (type === 'tx') {
+                        _txRefreshToken(target);
+                    }
+                    else {
+                        target.login = false;
+                    }
+                }
+            }
+        }
+
+        xhr.open('GET',url,false);
+        xhr.send(null);
+
+        function _getPersonInfo(res,t) {
+            if (type === 'sina') t.username = res['screen_name'];
+            else if (type === 'tx') t.username = res['data']['nick'];
+            else if(type === 'rr') t.username = res[''];
+        }
+
+        function _txRefreshToken(t) {
+            var _url = 'https://open.t.qq.com/cgi_bin/oauth2/access_token?client_id=' + 
+                MixOne.Auth.TX.appkey + '&grant_type=refresh_token& refresh_token=' + 
+                o['refresh_token'],
+                ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState === 4) {
+                    if (ajax.status === 200) {
+                        var res = ajax.responseText.split('&');
+                        t.login = true;
+                        t.access_token = res[0].split('=')[1];
+                        t.refresh_token = res[2].split('=')[1];
+                        t.username = res[3].split('=')[1];
+                    }
+                    else {
+                        t.login = false;
+                    }
+                }
+                
+            }
+
+            ajax.open('GET', _url, false);
+            ajax.send(null);
+        }
+    }
+
+    /*
+    * get renren token.
+    ***/
+    function getRRToken() {
+        var r = MixOne.Auth.RR;
+        var url = r.codeURL + '?client_id=' + r.appkey + '&redirect_uri=' + 
+            r.redirectURL + '&response_type=token';
+        
+        getAuthCode(url,r,'rr');
+    }
+
+
 
     function checkNetwork() {
         var networkInfo = Windows.Networking.Connectivity.NetworkInformation,
@@ -210,7 +273,9 @@ var MixOne;
                         }
                     }()); break;
                     case 'rr': (function () {
-
+                        var resToken = data.split('#')[1].split('&')[0].split('=')[1];
+                        o.token = resToken;
+                        console.log(resToken);
                     }()); break;
                     default: (function () {
 
@@ -237,8 +302,12 @@ var MixOne;
                         }()); break;
                         case 'tx': (function () {
                             if (resText !== null && resText.length > 5) {
+                                var error = resText.slice(0, 5);
+                                if (error === 'error') return false;
                                 o.token = resText.split('&')[0].split('=')[1];
                                 o.refreshToken = resText.split('&')[2].split('=')[1];
+
+                                console.log('token is ' + o.token);
                             }
 
                         }()); break;
@@ -271,7 +340,7 @@ var MixOne;
     function getTXToken() {
 
         var tx = MixOne.Auth.TX;
-        var url = tx.tokenURL + '?client_id=' + tx.appkey + '&client_secrect=' +
+        var url = tx.tokenURL + '?client_id=' + tx.appkey + '&client_secret=' +
             tx.appsecret + '&redirect_uri=' + tx.redirectURL + '&grant_type=authorization_code'
             + '&code=' + tx.code;
 
@@ -301,35 +370,34 @@ var MixOne;
             tx.appkey + '&access_token=' + tx.token + '&openid=' + tx.openid + '&clientip='+
             +ip + '&oauth_version=2.a&scope=all&' + 'reqnum=' + number + '&' +
             'format=json&pageflage='+flag+'&pagetime='+lastTime+'&type=0&contenttype=0';
-
+        console.log(url);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     var res = JSON.parse(xhr.responseText)['data'],
                         info = res['info'],
-                        len = info.length,
-                            o = {};
-
+                        len = info.length;
                     if (len > 0) {
                         MixOne.Auth.TX.lastTime = info[0]['timestamp'];
                     }
 
                     for (var i = 0; i < len; i++) {
-
+                        var o = {};
                         o.id = 'txwb' + info[i]['id'];
                         o.name = info[i]['nick'];
                         o.text = info[i]['text'];
                         o.avart = info[i]['head'].replace(/\\/g, '') + '/50';
                         o.time = info[i]['timestamp'];
+                        o.date = _timeToDate(o.time);
                         o.repostCount = info[i]['count'];
                         o.commentCount = info[i]['mcount'];
-                        o.source = 'tx';
+                        o.source = '腾讯微博';
                         if (info[i]['image']) {
                             o.image = info[i]['image'][0].replace(/\\/g,'') + '/160';
                         }
 
                         if (info[i]['source']) {
-                            var source = res[i]['source'];
+                            var source = info[i]['source'];
                             o.retweet = {};
                             o.retweet.name = source['nick'];
                             o.retweet.text = source['text'];
@@ -338,12 +406,17 @@ var MixOne;
                             }
 
                         }
-                        
                         MixOne.News.TX.push(o);
+                        
                     }
+
+                    
                 }
             }
         }
+
+        xhr.open('GET', url, false);
+        xhr.send(null);
 
     }
     function refreshTXToken() {
@@ -358,6 +431,25 @@ var MixOne;
             return 'fail';
         }
         
+    }
+
+    function _timeToDate(time) {
+        if (time < 1351700000000) {
+            time = time * 1000;
+        }
+
+        var d = new Date(time),
+            today = '';
+
+        var year = d.getFullYear(),
+            month = d.getMonth() + 1,
+            day = d.getDate(),
+            hour = d.getHours(),
+            minute = d.getMinutes(),
+            second = d.getSeconds();
+
+        today = year + '/' + month + '/' + day + '  ' + hour + ':' + minute;
+        return today;
     }
 
     //for sina auth
@@ -413,10 +505,11 @@ var MixOne;
                         o.name = res[i]['user']['screen_name'];
                         o.text = res[i]['text'];
                         o.avart = res[i]['user']['profile_image_url'];
-                        o.time = ((new Date(res[i]['created_at'].replace(' +0800',''))).getTime()) / 1000;
+                        o.time = ((new Date(res[i]['created_at'].replace(' +0800', ''))).getTime()) / 1000;
+                        o.date = _timeToDate(o.time);
                         o.repostCount = res[i]['reposts_count'];
                         o.commentCount = res[i]['comments_count'];
-                        o.source = 'sina';
+                        o.source = '新浪微博';
                         if (res[i]['bmiddle_pic']) {
                             o.image = res[i]['bmiddle_pic'];
                         }

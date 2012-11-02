@@ -12,12 +12,20 @@
 
     <!-- Mixone 引用 -->
     <link href="/css/default.css" rel="stylesheet" />
-    <script src="/js/default.js"></script>
+    
     <script src="/js/mixone.js"></script>
+    <script src="/js/default.js"></script>
     <script src="/js/navigator.js"></script>
     
 </head>
 <body>
     <div id="contentHost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/www/init/index.html'}"></div>
+
+    <div id="commandsAppBar" data-win-control="WinJS.UI.AppBar" data-win-options="">
+
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'prefrence',label:'设置',icon:'add',section:'global',tooltip:'Add item'}">
+        </button>
+
+    </div>
 </body>
 </html>

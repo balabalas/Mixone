@@ -7,110 +7,134 @@
     <PackageArchitecture>neutral</PackageArchitecture>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\bin\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\about\index.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\about\index.css">
       <PackagePath>css\about\index.css</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\init.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\detail\detail.css">
+      <PackagePath>css\detail\detail.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\init.css">
       <PackagePath>css\init.css</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\init\main.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\init\main.css">
       <PackagePath>css\init\main.css</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\login\index.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\login\index.css">
       <PackagePath>css\login\index.css</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\news\news.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\news\news.css">
       <PackagePath>css\news\news.css</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\default.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\default.css">
       <PackagePath>css\default.css</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\default.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\detail\detail.css">
+      <PackagePath>www\detail\detail.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\default.html">
       <PackagePath>default.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\about\index.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\about\index.html">
       <PackagePath>www\about\index.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\init\main.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\detail\detail.html">
+      <PackagePath>www\detail\detail.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\main.html">
       <PackagePath>www\init\main.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\init\status.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\status.html">
       <PackagePath>www\init\status.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\init\head.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\head.html">
       <PackagePath>www\init\head.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\init\index.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\index.html">
       <PackagePath>www\init\index.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\login\login.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\login\login.html">
       <PackagePath>www\login\login.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\news\news.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\news\news.html">
       <PackagePath>www\news\news.html</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\avarts\kx.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\avarts\kx.png">
       <PackagePath>images\avarts\kx.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\avarts\renren.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\avarts\renren.png">
       <PackagePath>images\avarts\renren.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\avarts\sina.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\avarts\sina.png">
       <PackagePath>images\avarts\sina.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\avarts\tx.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\avarts\tx.png">
       <PackagePath>images\avarts\tx.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\logo.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\logo.png">
       <PackagePath>images\logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\smalllogo.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\smalllogo.png">
       <PackagePath>images\smalllogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\splashscreen.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\splashscreen.png">
       <PackagePath>images\splashscreen.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\storelogo.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\storelogo.png">
       <PackagePath>images\storelogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\about\index.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\about\index.js">
       <PackagePath>js\about\index.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\default.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\default.js">
       <PackagePath>js\default.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\init\buttonClick.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\detail\data.js">
+      <PackagePath>js\detail\data.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\detail\detail.js">
+      <PackagePath>js\detail\detail.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\buttonClick.js">
       <PackagePath>js\init\buttonClick.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\init\init.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\init.js">
       <PackagePath>js\init\init.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\init\status.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\status.js">
       <PackagePath>js\init\status.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\login\index.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\login\index.js">
       <PackagePath>js\login\index.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\mixone.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\mixone.js">
       <PackagePath>js\mixone.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\navigator.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\navigator.js">
       <PackagePath>js\navigator.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\news\index.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\news\adjust.js">
+      <PackagePath>js\news\adjust.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\news\data.js">
+      <PackagePath>js\news\data.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\news\index.js">
       <PackagePath>js\news\index.js</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\bin\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\detail\detail.js">
+      <PackagePath>www\detail\detail.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

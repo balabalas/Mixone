@@ -6,75 +6,31 @@
     <title>news</title>
 
     <!-- WinJS 引用 -->
-    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
     <link href="/css/default.css" rel="stylesheet" />
     <link href="/css/news/news.css" rel="stylesheet" />
+    <script src="/js/news/data.js"></script>
     <script src="/js/news/index.js"></script>
 </head>
 <body>
     <!-- 将加载和显示的内容。 -->
-    <div class="">
+    <div id="newsContenPage">
         <header aria-label="Header content" role="banner">
             <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
-            <h1 class="titlearea win-type-ellipsis">
-                <span class="pagetitle">MixOne</span>
-            </h1>
         </header>
-        <div id="content" style="overflow-y:scroll">
-		<div id="newsList">
-			<!--<li class="clearfix">
-				<div class="userAvart">
-					<img src="http://tp2.sinaimg.cn/1771925961/50/5606639731/1" alt="" />
-				</div>
-				
-				<div class="textContent texts">
-					<p><span class="screen_name">小米公司</span><span>:</span>有木有像@杨幂 呢？</p>
-					<div class="retweeted">
-					  <span>@</span><span class="retweetUser">小米粉丝后援会</span><span>:</span><span>
-					  	#我是米粉#分享小米社区米粉（ysy5779 ）的照片[爱你]，是可耐漂亮滴美女有木有？有木有像@杨幂 呢？[思考]爱自拍的米粉朋友你在哪里呢？快快围观美女帅哥吧http://t.cn/zWICysU
-					  </span>
-					</div>
-					<div class="fromeAndTime">
-					  <p style="display:inline-block;">新浪微博&nbsp;&nbsp; 2012.10.26 12:00</p>
-					  <span class="buttonGroup"><span>评论</span>&nbsp;<span>回复</span></span>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</li>-->
-            <div id="listTemplate" data-win-control="WinJS.Binding.Template" style="display:none;" class="clearfix">
-				<div class="userAvart">
-					<img src="#" data-win-bind="src: avart" />
-				</div>
-				
-				<div class="textContent texts">
-					<p><span class="screen_name" data-win-bind="innerText: name"></span><span>:</span>
-                        <span data-win-bind="innerText: text"></span></p>
-					<div class="retweeted">
-					  <span>@</span>
-                        <span class="retweetUser" data-win-bind="innerText: retweet.name"></span>
-                        <span>:</span>
-                        <span data-win-bind="innerText: retweet.text">
-					  	
-					  </span>
-					</div>
-					<div class="fromeAndTime">
-					  <p style="display:inline-block;" data-win-bind="innerText: source"></p>
-					  <span class="buttonGroup"><span>评论</span>&nbsp;<span>回复</span></span>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-
-            <div id="basicMessageListView" data-win-control="WinJS.UI.ListView"
-                data-win-options="{itemDataSource: AllMessages.dataSource,
-                itemTemplate:listTemplate,
-                layout: { type: WinJS.UI.ListLayout }}
-                "></div>
-		</div>
-	</div>
+        <div id="newsContent" style="overflow-y:scroll">
+		    <div id="newsList">
+                <div id="basicMessageListView" data-win-control="WinJS.UI.ListView"
+                    data-win-options="{itemDataSource: AllMessages.itemList.dataSource,
+                    itemTemplate: myListTemplate,
+                    layout: { type: WinJS.UI.GridLayout }}
+                    "></div>
+		    </div>
+	    </div>
     </div>
+    <!--<script src="/js/news/adjust.js"></script>-->
 </body>
 </html>

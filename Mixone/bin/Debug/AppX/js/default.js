@@ -30,6 +30,9 @@
                 var _url = WinJS.Application.sessionState.lastUrl || defaultUrl;
                 return nav.navigate(_url);
             }
+
+            checkLogin();
+
             if (app.sessionState.history) {
                 nav.history = app.sessionState.history;
             }
@@ -55,6 +58,49 @@
         });
     });
 
+    function checkLogin() {
+
+        var statusStore = localStorage.getItem('Status'),
+            status = {},
+            token = '',
+            uid = '',
+            o = {},
+            target = MixOne.Status;
+        
+        if (statusStore !== null && statusStore !== undefined) {
+            status = JSON.parse(statusStore);
+        }
+
+        if (status !== null && status !== {}) {
+            if (status['Sina']) {
+                o.token = status['Sina']['token'];
+                o.uid = status['Sina']['uid'];
+                MixOne.etc.getUser('sina', o);
+            }
+
+            if (status['TX']) {
+                o.token = status['TX']['token'];
+                o.uid = status['TX']['uid'];
+                o.refresh_token = status['TX']['refresh_token'];
+                MixOne.etc.getUser('tx', o);
+            }
+
+            if (status['RR']) {
+                o.token = status['RR']['token'];
+                o.uid = status['RR']['uid'];
+                MixOne.etc.getUser('rr', o);
+            }
+
+        }
+        else {
+            target['Sina']['login'] = false;
+            target['TX']['login'] = false;
+            target['RR']['login'] = false;
+        }
+    }
+
+
+
     app.oncheckpoint = function (args) {
         // TODO: 即将挂起此应用程序。在此处保存
         //需要在挂起中保留的任何状态。您可以使用
@@ -68,7 +114,7 @@
         if (MixOne) {
             if (MixOne.Status) {
                 var loginStatus = JSON.stringify(MixOne.Status);
-                localStorage.setItem('loginFlag',loginStatus);
+                localStorage.setItem('Status',loginStatus);
             }
         }
         app.sessionState.history = nav.history;

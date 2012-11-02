@@ -19,42 +19,14 @@
         abm.addEventListener('click', aboutMixone, false);
     }
 
-    function messageClick(e) {
-        e.preventDefault();
-
-        var news = MixOne.News,
-            sinaLength = news.Sina.length,
-            txLength = news.TX.length,
-            rrLength = news.RR.length,
-            msg = [];
-
-        if (sinaLength > 0) msg = msg.concat(news.Sina);
-        if (txLength > 0) msg = msg.concat(news.TX);
-        if (rrLength > 0) msg = msg.concat(news.RR);
-        console.log('sina length : ' + news.Sina.length);
-        console.log('msg length:' + msg.length);
-        if (msg.length > 0) {
-            msg.sort(function (a, b) {
-                if (typeof a !== 'object') {
-                    return 0;
-                }
-                if (typeof b !== 'object') {
-                    return 0;
-                }
-
-                return b.time - a.time;
-            });
+    function messageClick() {      
+        if (_checkLogin()) WinJS.Navigation.navigate('/www/news/news.html');
+        else {
+            _notLogin();
         }
-
-        var dataList = new WinJS.Binding.List(msg);
-
-        WinJS.Namespace.define('AllMessages', dataList);
-
-        WinJS.Navigation.navigate('/www/news/news.html');
     }
 
-    function addAccount(e) {
-        e.preventDefault();
+    function addAccount() {
         if (checkNetwork()) {
             WinJS.Navigation.navigate('/www/login/login.html');
         }
@@ -62,8 +34,7 @@
 
     function modifyPrefrence(e) {
         e.preventDefault();
-
-
+        WinJS.Navigation.navigate('/www/detail/detail.html');
     }
 
     function aboutMixone(e) {
@@ -91,4 +62,28 @@
         }
     }
 
+    function _checkLogin() {
+        var s = MixOne.Status,
+            loginFlag = false;
+
+        if (s) {
+            if (s['Sina'] && s['Sina']['login']) loginFlag = true;
+            if (s['TX'] && s['TX']['login']) loginFlag = true;
+            if (s['RR'] && s['RR']['login']) loginFlag = true;
+        }
+        return loginFlag;
+    }
+
+    function _notLogin() {
+        var msg = new Windows.UI.Popups.MessageDialog('请添加账号', '未登陆');
+        msg.commands.append(new Windows.UI.Popups.UICommand('添加账号', function (command) {
+            WinJS.Navigation.navigate('/www/login/login.html');
+        }));
+        msg.commands.append(new Windows.UI.Popups.UICommand('确定', function (command) {
+            
+        }));
+        msg.defaultCommandIndex = 1;
+        msg.showAsync();
+
+    }
 }());

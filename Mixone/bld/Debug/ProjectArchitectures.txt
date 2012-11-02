@@ -1,1 +1,1 @@
-C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\Mixone.jsproj;neutral
+C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\Mixone.jsproj;neutral
