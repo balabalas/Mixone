@@ -5,12 +5,16 @@
     'use strict';
 
     var mx = null,
-        status = null;
+        status = null,
+        ms = null;
 
     if (MixOne && MixOne.Auth) {
         mx = MixOne.Auth;
-        console.log('mx is MixOne.Auth now!');
     }
+    if (MixOne && MixOne.Serve) {
+        ms = MixOne.Serve;
+    }
+
     if (MixOne && MixOne.Status) {
         status = MixOne.Status;
     }
@@ -32,24 +36,26 @@
         var flag = 0,
             wflag = 0;
 
-        if (status && status.Sina && status.Sina.login) {
+        if (status && status.Sina && status.Sina.login && mx.Sina.login) {
             e.preventDefault();
+            return;
         }
         else if(mx && mx.Sina) {
-            var s = mx.Sina;
-            s.getCode();
+            var s = mx.Sina, sms = ms.Sina;
+            s.code = null;
+            sms.getCode();
             var stoken = setInterval(function () {
                 flag += 1;
                 if (flag >= 2000) {
                     clearInterval(stoken);
-                    //Here can insert a popMessage.
-
-                    return false;
+                    return;
                 }
                 if (s.code !== null && s.code !== undefined) {
+                    console.log('login:s.code-'+s.code);
                 }
                 if (s.code && s.code.length > 4) {
-                    s.getToken();
+                    s.token = null;
+                    sms.getToken();
                     clearInterval(stoken);
                 }
 
@@ -59,20 +65,18 @@
                 wflag += 1;
                 if (wflag >= 4000) {
                     clearInterval(sweibo);
-                    return false;
+                    return;
                 }
                 if (s.token && s.token.length > 4) {
-                    s.getNews();
+                    sms.getNews();
                     status.Sina.login = true;
+                    localStorage.setItem('status', JSON.stringify(status));
+                    localStorage.setItem('auth', JSON.stringify(mx));
+                    MixOne.etc.checkLogin();
                     clearInterval(sweibo);
-                    
                 }
             }, 50);
         }
-
-        
-        
-
     }
 
     function loginTX(e) {
@@ -84,22 +88,19 @@
         }
         else if (mx && mx.TX) {
 
-            var t = mx.TX;
-            t.getCode();
+            var t = mx.TX,
+                mst = MixOne.Serve.TX;
+            mst.getCode();
 
             var ttoken = setInterval(function () {
                 codeFlag += 1;
-                if (codeFlag >= 2000) {
+                if (codeFlag >= 3000) {
                     clearInterval(ttoken);
                     return false;
                 }
 
-                if (t.code !== null && t.code !== undefined) {
-
-                }
-
                 if (t.code && t.code.length > 4) {
-                    t.getToken();
+                    mst.getToken();
                     clearInterval(ttoken);
                 }
 
@@ -107,16 +108,18 @@
 
             var tWeibo = setInterval(function () {
                 tokenFlag += 1;
-                if (tokenFlag >= 4000) {
+                if (tokenFlag >= 5000) {
                     clearInterval(tWeibo);
                     return false;
                 }
 
                 if (t.token && t.token.length > 4) {
                     status.TX.login = true;
-                    t.getNews();
+                    mst.getNews();
+                    mst.getUser();
+                    localStorage.setItem('status', JSON.stringify(status));
+                    MixOne.etc.checkLogin();
                     clearInterval(tWeibo);
-                    
                 }
 
             },50);

@@ -63,14 +63,33 @@
     }
 
     function _checkLogin() {
-        var s = MixOne.Status,
-            loginFlag = false;
 
-        if (s) {
-            if (s['Sina'] && s['Sina']['login']) loginFlag = true;
-            if (s['TX'] && s['TX']['login']) loginFlag = true;
-            if (s['RR'] && s['RR']['login']) loginFlag = true;
+        console.log('start to checkLogin!');
+        var s = MixOne.Status || JSON.parse(localStorage.getItem('status'));
+        var o = {},
+            loginFlag = false,
+            auth = MixOne.Auth || JSON.parse(localStorage.getItem('auth'));
+        if (s && auth) {
+            if (s['Sina'] && s['Sina']['login'] && auth.Sina.login) {
+                loginFlag = true;
+                o.sina = true;
+            }
+            if (s['TX'] && s['TX']['login'] && auth.TX.login) {
+                loginFlag = true;
+                o.tx = true;
+            }
+            if (s['RR'] && s['RR']['login'] && auth.RR.login) {
+                loginFlag = true;
+                o.rr = true;
+            }
+
+            if (loginFlag) getMessages(o);
         }
+        else {
+            return false;
+        }
+
+        console.log('return flag ' + loginFlag);
         return loginFlag;
     }
 
@@ -85,5 +104,19 @@
         msg.defaultCommandIndex = 1;
         msg.showAsync();
 
+    }
+
+    function getMessages(o) {
+        var server = null;
+        if (MixOne && MixOne.Serve) {
+            server = MixOne.Serve;
+        }
+        else {
+            return;
+        }
+
+        if (o.sina) server.Sina.getNews();
+        if (o.tx) server.TX.getNews();
+        if (o.rr) server.RR.getNews();
     }
 }());

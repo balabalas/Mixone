@@ -1,171 +1,149 @@
-﻿
-var MixOne;
+﻿var MixOne = {};
 
 (function(){
     'use strict';
 
-    MixOne = {};
-    MixOne.Status = {};
+    var MixOne = MixOne || {};
+    
     MixOne.etc = {
         checkNetwork: checkNetwork,
-        getUser: getUserInfo
+        getIP: getIpAddress
     };
     MixOne.News = {};
 
-    MixOne.News.Sina = new Array();
+    MixOne.News.Sina = [];
     MixOne.News.TX = [];
     MixOne.News.RR = [];
-    console.log('first: '+ MixOne.News.Sina instanceof Array);
 
     var settings = localStorage.getItem('settings'),
-        number = 20;
+        number = 30;
 
     if (settings) {
         var setting = JSON.parse(settings);
         number = setting.number || 20;
     }
 
-    MixOne.Auth = {
-        TX: {
-            appkey: '801257753',
-            appsecret: '5b90cf75a29585174bef45bf2e1548d4',
-            codeURL: 'https://open.t.qq.com/cgi-bin/oauth2/authorize',
-            redirectURL: 'http://www.mixone.org',
-            tokenURL: 'https://open.t.qq.com/cgi-bin/oauth2/access_token',
-            ipaddress: '',
-            refreshToken: '',
-            refreshTXToken: refreshTXToken,
-            getCode: getTXCode,
-            getToken: getTXToken,
-            getNews: getTXWeibo
-        },
-        Sina: {
-            appkey: '3654626002',
-            appsecret: 'a13b68086cc9b399a28a324e85e49e97',
-            codeURL: 'https://api.weibo.com/oauth2/authorize',
-            redirectURL: 'https://api.weibo.com/oauth2/default.html',
-            tokenURL: 'https://api.weibo.com/oauth2/access_token',
-            getCode: getSinaCode,
-            getToken: getSinaToken,
-            getNews: getSinaWeibo
-        },
-        RR: {
-            appkey: '63df73f39cd84f28959aaa0bc0da4734',
-            appsecret: '0a4958793e8247be91adb6cda2019dcd',
-            codeURL: 'https://graph.renren.com/oauth/authorize',
-            tokenURL: 'https://graph.renren.com/oauth/authorize',
-            redirectURL:'http://graph.renren.com/oauth/login_success.html',
-            getToken: getRRToken
-        },
-        KX: {}
-    };
+    function _init() {
+        var _status = localStorage.getItem('status');
+        if (_status && _status !== '[object Object]') {
+            var _jStatus = JSON.parse(_status);
 
-    MixOne.Status.TX = {};
-    MixOne.Status.Sina = {};
-    MixOne.Status.RR = {};
-    MixOne.Status.KX = {};
+            if (typeof _jStatus === 'object') {
+                MixOne.Status = _jStatus;
+            }
+        }
+        else {
+            _initStatus();
+        }
+
+        var oauth = localStorage.getItem('auth');
+        if (oauth !== null && oauth !== '[object Object]') {
+            if (oauth.length > 6) {
+                var auth = JSON.parse(oauth);
+                if (typeof auth === 'object') {
+                    MixOne.Auth = auth;
+                }
+                else {
+                    _initAuth();
+                }
+            }
+            else {
+                _initAuth();
+            }
+        }
+        else {
+            _initAuth();
+        }
+    }
+
+    function _initAuth() {
+        MixOne.Auth = {
+            TX: {
+                appkey: '801257753',
+                appsecret: '5b90cf75a29585174bef45bf2e1548d4',
+                codeURL: 'https://open.t.qq.com/cgi-bin/oauth2/authorize',
+                redirectURL: 'http://www.mixone.org',
+                tokenURL: 'https://open.t.qq.com/cgi-bin/oauth2/access_token',
+                ipaddress: '',
+                refreshToken: ''
+            },
+            Sina: {
+                appkey: '3654626002',
+                appsecret: 'a13b68086cc9b399a28a324e85e49e97',
+                codeURL: 'https://api.weibo.com/oauth2/authorize',
+                redirectURL: 'https://api.weibo.com/oauth2/default.html',
+                tokenURL: 'https://api.weibo.com/oauth2/access_token'
+            },
+            RR: {
+                appkey: '63df73f39cd84f28959aaa0bc0da4734',
+                appsecret: '0a4958793e8247be91adb6cda2019dcd',
+                codeURL: 'https://graph.renren.com/oauth/authorize',
+                tokenURL: 'https://graph.renren.com/oauth/authorize',
+                redirectURL: 'http://graph.renren.com/oauth/login_success.html',
+
+            },
+            KX: {}
+        };
+    }
+
+    function _initStatus() {
+        MixOne.Status = {};
+
+        MixOne.Status.TX = {};
+        MixOne.Status.Sina = {};
+        MixOne.Status.RR = {};
+        MixOne.Status.KX = {};
+    }
+
     MixOne.Serve = {
         TX: {
-            getNews: getTXWeibo
+            getNews: getTXWeibo,
+            refreshToken: refreshTXToken,
+            getCode: getTXCode,
+            getToken: getTXToken,
+            getUser: getTXUser
         },
         Sina: {
             getNews: getSinaWeibo,
-
+            getCode: getSinaCode,
+            getToken: getSinaToken,
+            getUser: getSinaUser
         },
-        RR: {},
+        RR: {
+            getToken: getRRToken
+        },
         KX: {}
     }
-
-    function initMixone() {
-        getIpAddress();
-        WinJS.Namespace.define('MixOne',MixOne);
-    }
-
+    
     /**
-    * Get user info
-    *
-    **/
-    function getUserInfo(type,o) {
+    * useless!!!
+    * refreshTXToken do the same things!
+    */
+    function _txRefreshToken() {
+        var _url = 'https://open.t.qq.com/cgi_bin/oauth2/access_token?client_id=' +
+            MixOne.Auth.TX.appkey + '&grant_type=refresh_token&refresh_token=' +
+            MixOne.Auth.TX.refreshToken,
+            ajax = new XMLHttpRequest(),
+            t = MixOne.Auth.TX;
 
-        var url = '',
-            target = {};
-        switch (type) {
-            case 'sina': (function () {
-                url = 'https://api.weibo.com/2/users/show.json?access_token=' +
-                    o.token + '&uid=' + o.uid;
-                target = MixOne.Status.Sina;
-            })(); break;
-            case 'tx': (function () {
-                url = '';
-                target = MixOne.Status.TX;
-            })(); break;
-            case 'rr': (function () {
-                url = '';
-                target = MixOne.Status.RR;
-            })(); break;
-            default: url = '';
-        }
-
-        var xhr = new XMLHttpRequest();
-        xhr.timeout = 10000;
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    var res = xhr.responseText;
-                    if (res !== null && res !== undefined) {
-                        var data = JSON.parse(res);
-                        target.login = true;
-                        target.token = o.token;
-                        target.uid = o.uid;
-                        _getPersonInfo(data,target);
-                    }
+        ajax.onreadystatechange = function () {
+            if (ajax.readyState === 4) {
+                if (ajax.status === 200) {
+                    var res = ajax.responseText.split('&');
+                    t.login = true;
+                    t.access_token = res[0].split('=')[1];
+                    t.refresh_token = res[2].split('=')[1];
+                    t.username = res[3].split('=')[1];
                 }
                 else {
-                    //when get the wrong messages.
-                    if (type === 'tx') {
-                        _txRefreshToken(target);
-                    }
-                    else {
-                        target.login = false;
-                    }
+                    t.login = false;
                 }
             }
+
         }
 
-        xhr.open('GET',url,false);
-        xhr.send(null);
-
-        function _getPersonInfo(res,t) {
-            if (type === 'sina') t.username = res['screen_name'];
-            else if (type === 'tx') t.username = res['data']['nick'];
-            else if(type === 'rr') t.username = res[''];
-        }
-
-        function _txRefreshToken(t) {
-            var _url = 'https://open.t.qq.com/cgi_bin/oauth2/access_token?client_id=' + 
-                MixOne.Auth.TX.appkey + '&grant_type=refresh_token& refresh_token=' + 
-                o['refresh_token'],
-                ajax = new XMLHttpRequest();
-
-            ajax.onreadystatechange = function () {
-                if (ajax.readyState === 4) {
-                    if (ajax.status === 200) {
-                        var res = ajax.responseText.split('&');
-                        t.login = true;
-                        t.access_token = res[0].split('=')[1];
-                        t.refresh_token = res[2].split('=')[1];
-                        t.username = res[3].split('=')[1];
-                    }
-                    else {
-                        t.login = false;
-                    }
-                }
-                
-            }
-
-            ajax.open('GET', _url, false);
-            ajax.send(null);
-        }
+        ajax.open('GET', _url, false);
+        ajax.send(null);
     }
 
     /*
@@ -178,8 +156,6 @@ var MixOne;
         
         getAuthCode(url,r,'rr');
     }
-
-
 
     function checkNetwork() {
         var networkInfo = Windows.Networking.Connectivity.NetworkInformation,
@@ -217,7 +193,7 @@ var MixOne;
     //get ip address
     function getIpAddress(myurl) {
 
-        if (!myurl) myurl = 'http://iframe.ip138.com/ipcity.asp';
+        if (!myurl) myurl = 'http://iframe.ip138.com/ic.asp';
         var exp = /([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3})/g,
             ipaddress = '';
         WinJS.xhr({
@@ -225,6 +201,10 @@ var MixOne;
             url: myurl
         }).done(function (res) {
             if (res.status === 200) {
+                var r = res.responseData;
+                if (!exp.test(r)) {
+                    getIpAddress('http://jsonip.com/');
+                }
                 ipaddress = res.response.match(exp)[0];
                 if (MixOne.Auth.TX) MixOne.Auth.TX.ipaddress = ipaddress;
                 localStorage.setItem('ipaddress',ipaddress);
@@ -252,7 +232,6 @@ var MixOne;
                 switch (type) {
                     case 'sina': (function () {
                         o.code = data.match(/(\?)(.)+/g)[0].slice(1);
-                        console.log('return sina code is ' + o.code);
                     }()); break;
                     case 'tx': (function () {
                         var adds = data.split('?')[1],
@@ -275,7 +254,6 @@ var MixOne;
                     case 'rr': (function () {
                         var resToken = data.split('#')[1].split('&')[0].split('=')[1];
                         o.token = resToken;
-                        console.log(resToken);
                     }()); break;
                     default: (function () {
 
@@ -297,8 +275,11 @@ var MixOne;
                     var resText = xhr.responseText;
                     switch (type) {
                         case 'sina': (function () {
-                          if(resText !== null && resText.length > 5)
-                            o.token = JSON.parse(resText)['access_token'];
+                            if (resText !== null && resText.length > 5) {
+                                o.token = JSON.parse(resText)['access_token'];
+                                o.uid = JSON.parse(resText)['uid'];
+                                getSinaUser();
+                            }
                         }()); break;
                         case 'tx': (function () {
                             if (resText !== null && resText.length > 5) {
@@ -306,8 +287,6 @@ var MixOne;
                                 if (error === 'error') return false;
                                 o.token = resText.split('&')[0].split('=')[1];
                                 o.refreshToken = resText.split('&')[2].split('=')[1];
-
-                                console.log('token is ' + o.token);
                             }
 
                         }()); break;
@@ -347,16 +326,17 @@ var MixOne;
         getAuthToken(url,tx,'tx');
     }
     function getTXWeibo(flag) {
-        var ip = '', ipInfo = localStorage.getItem('ipaddress'), o = {},
+        var ip = '', o = {},
             tx = MixOne.Auth.TX,
             xhr = new XMLHttpRequest(),
             lastTime = 0;
-            
+        
+        if (!tx.ipaddress) {
+            getIpAddress();
+        }
+
         if (tx.ipaddress && tx.ipaddress.length > 4) {
             ip = tx.ipaddress;
-        }
-        else if (ipInfo && ipInfo.length > 4) {
-            ip = ipInfo;
         }
 
         if (!flag) flag = 0;
@@ -370,16 +350,20 @@ var MixOne;
             tx.appkey + '&access_token=' + tx.token + '&openid=' + tx.openid + '&clientip='+
             +ip + '&oauth_version=2.a&scope=all&' + 'reqnum=' + number + '&' +
             'format=json&pageflage='+flag+'&pagetime='+lastTime+'&type=0&contenttype=0';
-        console.log(url);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     var res = JSON.parse(xhr.responseText)['data'],
-                        info = res['info'],
-                        len = info.length;
+                        info = [],
+                        len = 0;
+
+                    if (res !== null && res !== undefined) info = res['info'];
+                    len = info.length;
                     if (len > 0) {
                         MixOne.Auth.TX.lastTime = info[0]['timestamp'];
                     }
+
+                    if (MixOne.News.TX.length > 0) MixOne.News.TX = [];
 
                     for (var i = 0; i < len; i++) {
                         var o = {};
@@ -432,7 +416,42 @@ var MixOne;
         }
         
     }
+    function getTXUser() {
 
+        var tx = MixOne.Auth.TX,
+            xhr = new XMLHttpRequest();
+        if (!tx.openid) return false;
+        var url = 'https://open.t.qq.com/api/user/info?access_token=' + tx.token + 
+            '&oauth_consumer_key=' + tx.appkey + '&openid=' + tx.openid + '&clientip= ' +
+            tx.ipaddress + '&oauth_version=2.a' + '&scope=all' + '&format=json';
+
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var res = JSON.parse(xhr.responseText);
+                    if (res) {
+                        tx.username = res['data']['nick'];
+                        tx.login = true;
+                        MixOne.Status.TX.username = tx.username;
+                        MixOne.Status.TX.login = true;
+
+                        localStorage.setItem('status',JSON.stringify(MixOne.Status));
+                    }
+                    else {
+                        MixOne.Status.TX.login = false;
+                    }
+                }
+                else {
+                    MixOne.Status.TX.login = false;
+                    tx.login = false;
+                }
+            }
+        }
+
+        xhr.open('GET',url,false);
+        xhr.send(null);
+    }
     function _timeToDate(time) {
         if (time < 1351700000000) {
             time = time * 1000;
@@ -462,7 +481,6 @@ var MixOne;
         getAuthCode(url, s, 'sina');
     }
     function getSinaToken() {
-
         var s = MixOne.Auth.Sina;
         var url = s.tokenURL + '?client_id=' + s.appkey + '&client_secret=' + s.appsecret +
             '&grant_type=authorization_code' + '&redirect_uri=' + s.redirectURL + '&' + s.code;
@@ -470,6 +488,12 @@ var MixOne;
         getAuthToken(url, s, 'sina');
     }
     function getSinaWeibo(flag) {
+
+        if (!MixOne.Auth) {
+            var oauth = localStorage.getItem('auth');
+            if(oauth !== null && oauth !== undefined)
+                MixOne.Auth = oauth;
+        }
 
         var s = MixOne.Auth.Sina;
         var url = 'https://api.weibo.com/2/statuses/home_timeline.json?access_token=' +
@@ -497,7 +521,9 @@ var MixOne;
                         if(res.length > 0)
                         MixOne.Auth.Sina.lastTime = res[0]['id'];
                     }
-                    console.log('sina res len is ' + len);
+                    if (len > 0 && MixOne.News.Sina.length > 0) {
+                        MixOne.News.Sina = [];
+                    }
                     for (var i = 0; i < len; i++) {
                         var o = {};
 
@@ -535,27 +561,61 @@ var MixOne;
         xhr.send(null);
 
     }
-    function getSinaComment(id) {
-        var url = 'https://api.weibo.com/2/comments/show.json?access_token=' +
-            MixOne.Auth.token + '&id=' + id,
+    function getSinaUser() {
+        if (!MixOne.Auth.Sina.uid) return;
+        var url = 'https://api.weibo.com/2/users/show.json' + '?access_token=' +
+            MixOne.Auth.Sina.token + '&uid=' + MixOne.Auth.Sina.uid,
             xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if (xhr.status === 200) {
+                    var res = JSON.parse(xhr.responseText);
 
+                    MixOne.Auth.Sina.username = res['screen_name'];
+                    MixOne.Status.Sina.username = res['screen_name'];
+                    MixOne.Status.Sina.login = true;
+                    MixOne.Auth.Sina.login = true;
+
+                    console.log(MixOne.Status.Sina.username);
+
+                    localStorage.setItem('status', JSON.stringify(MixOne.Status));
+                    localStorage.setItem('auth', JSON.stringify(MixOne.Auth));
+                }
+                else {
+                    MixOne.Auth.Sina.login = false;
+                    MixOne.Status.Sina.login = false;
+                }
+            }
         }
 
-
+        xhr.open('GET', url, false);
+        xhr.send(null);
+        
     }
     /* for renren */
 
+    //var page = WinJS.UI.Pages.define("/www/default.html", {
+    //    ready: function (element, options) {
+            
+    //    }
+    //});
 
+    function initMixone() {
+        getIpAddress();
+        
 
+        var auth = localStorage.getItem('auth');
 
-    var page = WinJS.UI.Pages.define("/www/default.html", {
-        ready: function (element, options) {
-            initMixone();
+        if (auth !== null && auth !== '[object Object]') {
+            MixOne.Auth = JSON.parse(auth);
         }
-    });
 
-}());
+
+        WinJS.Namespace.define('MixOne', MixOne);
+    }
+
+    _init();
+    initMixone();
+})();
 

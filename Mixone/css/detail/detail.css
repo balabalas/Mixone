@@ -2,6 +2,10 @@
     background-color: #DBEAF9;
 }
 
+.font12pt {
+    font-size: 12pt;
+}
+
 .detailPage {
     width: 100vw;
     height: 100vh;
@@ -24,6 +28,112 @@
     clear: both;
 }
 
+.commentItemList {
+    width: 100%;
+    height: auto;
+    margin: 3px 8px;
+}
+
+.commentAvart {
+    float: left;
+    margin-right: 5px;
+    width: 55px;
+    height: 50px;
+}
+
+.commentText {
+    padding-right: 6px;
+    float:left;
+    width: 84%;
+    overflow: hidden;
+}
+
+.commentAvart::after {
+    content: ' ';
+    clear: both;
+}
+
+.commentItemText {
+    text-indent: 1em;
+}
+
+.win-container {
+    height: auto;
+    background-color: #DBEAF9 !important;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
+#detail_username {
+    display: inline-block;
+    font-size: 17pt;
+    vertical-align: middle;
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    clear: both;
+}
+
+#detail_text {
+    margin: 0;
+    padding: 0;
+    text-indent: 2em;
+}
+
+#detail_input {
+    width: 96%;
+    height: 8em;
+    -ms-scroll-snap-y: none;
+}
+
+#detai_textarea {
+    width: 98%;
+    height: 8em;
+    margin: 0 auto;
+    font-size: 12pt;
+}
+
+#detail_retweeted {
+    background: #5A9BD3;
+    width: 88%;
+    margin: 0.9em 1em 0.2em 0.5em;
+    position: relative;
+    border-radius: 6px 5px 5px 5px;
+}
+
+#detail_retweeted:after, #detail_retweeted:before {
+	bottom: 100%;
+	border: solid transparent;
+	content: ' ';
+	height: 0;
+	width: 0;
+	position: absolute;
+
+}
+
+#detail_retweeted:after {
+	border-color: rgba(136,183,213,0);
+	border-bottom-color: #5A9BD3;
+	border-width: 9px;
+	left: 16px;
+	margin-left: -9px;
+	
+}
+
+#detail_retweeted:before {
+	border-color: rgba(194,225,245,0);
+	border-bottom-color: #5A9BD3;
+	border-width: 12px;
+	left: 16px;
+	margin-left: -12px;
+}
+
 @media screen and (-ms-view-state: fullscreen-landscape) {
 
     #detailLeft {
@@ -31,7 +141,7 @@
         float: left;
         width: 55vw;
         height: 96vh;
-        background-color: blue;
+        background-color: #DBEAF9;
         padding-top: 4vh;
         padding-left: 5vw;
     }
@@ -46,14 +156,41 @@
         float: right;
         width: 40vw;
         height: 100vh;
-        background-color: yellow;
+        background-color: #DBEAF9;
     }
 
     #detailCommentList:after {
         content: ' ';
         clear: both;
     }
-    
+
+    .win-listview {
+        height: 89vh;
+        background-color: #DBEAF9;
+    }
+
+    #detailCommentLabel {
+        height: 10vh;
+        background-color: yellow;
+    }
+
+    .win-item {
+        padding: 0;
+        margin: 0;
+        min-height: 10vh;
+        margin-bottom: 3px;
+    }
+
+    #detail_content {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    #detail_avart {
+        clear: both;
+        height: 60px;
+    }
+
 
 
 }
@@ -63,7 +200,9 @@
 }
 
 @media screen and (-ms-view-state: snapped) {
-
+    #detailCommentList {
+        display: none;
+    }
 }
 
 @media screen and (-ms-view-state: fullscreen-portrait) {

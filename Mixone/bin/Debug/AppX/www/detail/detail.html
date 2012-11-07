@@ -18,20 +18,71 @@
         <div id="detailLeft">
             <header aria-label="Header content" role="banner">
                 <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
-                <p class="detail_title">MixOne（新浪微博）</p>
+                <p class="detail_title">MixOne<span id="detailSource"></span></p>
             </header>
             <section aria-label="Main content" role="main">
-            
+                <!--<div id="detailMessageContent">
+                    <div id="detailMessageView" data-win-control="WinJS.UI.ListView"
+                        data-win-options="{itemDataSource: AllMessages.itemList.dataSource,
+                        itemTemplate: myListTemplate,
+                        layout: { type: WinJS.UI.GridLayout }}
+                        "></div>
+		        </div>-->
+                <div id="detail_content">
+                    <div id="detail_avart">
+                        <div class="floatLeft"><img src="http://tp4.sinaimg.cn/1622978163/50/1254133239/1" alt=""/></div>
+                        <div class="floatRight"><img src="/images/picture.png"/></div>
+                        <span id="detail_username">DMDGeeker</span>
+                        
+                    </div>
+                    <div>
+                        <p class="font12pt" id="detail_text">
+                            【#小米手机MIUI系统#主题应用推送下载】小米已搭建专门的网页版市场，不仅可在电脑端直接下载，还能使用在线推送下载，完全省掉繁琐的数据线连接等操作。方法：手机端开启网络登录米聊—电脑端登录小米账号（和米聊同一账号）—选择想要下载东西—点击安装到手机！欢迎转发分享 http://t.cn/zlgcozM
+                        </p>
+                        <div class="font12pt" id="detail_retweeted">
+						  <span id="detail_retweetUser">小米粉丝后援会</span><span>:</span><span id="detail_retweetText">
+						  	#我是米粉#分享小米社区米粉（ysy5779 ）的照片[爱你]，是可耐漂亮滴美女有木有？有木有像@杨幂 呢？[思考]爱自拍的米粉朋友你在哪里呢？快快围观美女帅哥吧http://t.cn/zWICysU
+						  </span>
+						</div>
+                    </div>
+                    <div id="detai_textarea">
+                        <textarea id="detail_input">
+
+                        </textarea>
+                        <div>
+                            <div>
+                                <button>评论</button>
+                                <button>转发</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </section>
         </div>
-        <!--<div id="detailCommentList">
-            <div id="detailListView" data-win-control="WinJS.UI.ListView"
-                    data-win-options="{itemDataSource: ,
-                    itemTemplate: ,
-                    layout: { type: WinJS.UI.ListLayout }}
+        <div id="detailCommentList">
+            <div id="detailCommentLabel">
+                <p>评论列表</p>
+            </div>
+            <div id="detailCommentTemplate" data-win-control="WinJS.Binding.Template">
+                <div class ="commentItemList">
+                    <div class="commentAvart">
+                        <img alt="" src="#" data-win-bind="src: avart"/>
+                    </div>
+                    <div class="commentText">
+                        <div data-win-bind="innerText: name"></div>
+                        <div class="commentItemText" data-win-bind="innerText: text"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="detaillistview" data-win-control="WinJS.UI.ListView"
+                    data-win-options="{itemDataSource:Comments.itemList.dataSource, 
+                           itemTemplate: select('#detailCommentTemplate'), 
+                           layout:{type:WinJS.UI.ListLayout}}
                     "></div>
 
-        </div>-->
+        </div>
     </div>
 </body>
 </html>

@@ -16,7 +16,7 @@
     <AppXManifest Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2012-11-02T08:36:56.582</Modified>
+      <Modified>2012-11-05T08:08:37.479</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -26,7 +26,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\detail\detail.css">
       <PackagePath>css\detail\detail.css</PackagePath>
-      <Modified>2012-11-02T08:31:27.959</Modified>
+      <Modified>2012-11-03T05:16:57.709</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\init.css">
       <PackagePath>css\init.css</PackagePath>
@@ -42,11 +42,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\news\news.css">
       <PackagePath>css\news\news.css</PackagePath>
-      <Modified>2012-11-01T15:19:41.012</Modified>
+      <Modified>2012-11-02T14:02:35.280</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\default.css">
       <PackagePath>css\default.css</PackagePath>
-      <Modified>2012-07-26T03:30:08.000</Modified>
+      <Modified>2012-11-05T09:31:21.753</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\detail\detail.css">
       <PackagePath>www\detail\detail.css</PackagePath>
@@ -54,7 +54,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\default.html">
       <PackagePath>default.html</PackagePath>
-      <Modified>2012-11-01T06:02:07.076</Modified>
+      <Modified>2012-11-05T11:57:02.258</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\about\index.html">
       <PackagePath>www\about\index.html</PackagePath>
@@ -62,7 +62,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\detail\detail.html">
       <PackagePath>www\detail\detail.html</PackagePath>
-      <Modified>2012-11-02T08:49:47.134</Modified>
+      <Modified>2012-11-03T05:18:54.836</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\main.html">
       <PackagePath>www\init\main.html</PackagePath>
@@ -70,7 +70,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\status.html">
       <PackagePath>www\init\status.html</PackagePath>
-      <Modified>2012-10-28T12:53:05.821</Modified>
+      <Modified>2012-11-07T02:56:56.440</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\head.html">
       <PackagePath>www\init\head.html</PackagePath>
@@ -78,7 +78,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\index.html">
       <PackagePath>www\init\index.html</PackagePath>
-      <Modified>2012-10-27T17:35:19.925</Modified>
+      <Modified>2012-11-07T02:56:45.772</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\login\login.html">
       <PackagePath>www\login\login.html</PackagePath>
@@ -109,6 +109,10 @@
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2012-10-26T07:41:16.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\picture.png">
+      <PackagePath>images\picture.png</PackagePath>
+      <Modified>2012-11-02T15:01:38.813</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\smalllogo.png">
       <PackagePath>images\smalllogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -130,7 +134,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\default.js">
       <PackagePath>js\default.js</PackagePath>
-      <Modified>2012-11-01T06:46:02.416</Modified>
+      <Modified>2012-11-07T02:39:03.325</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\detail\data.js">
       <PackagePath>js\detail\data.js</PackagePath>
@@ -138,11 +142,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\detail\detail.js">
       <PackagePath>js\detail\detail.js</PackagePath>
-      <Modified>2012-11-02T08:56:37.691</Modified>
+      <Modified>2012-11-03T05:19:21.652</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\extendedSplash.js">
+      <PackagePath>js\extendedSplash.js</PackagePath>
+      <Modified>2012-11-05T09:16:08.461</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\buttonClick.js">
       <PackagePath>js\init\buttonClick.js</PackagePath>
-      <Modified>2012-11-02T07:58:25.515</Modified>
+      <Modified>2012-11-07T02:19:36.241</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\init.js">
       <PackagePath>js\init\init.js</PackagePath>
@@ -150,15 +158,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\status.js">
       <PackagePath>js\init\status.js</PackagePath>
-      <Modified>2012-10-29T03:00:57.128</Modified>
+      <Modified>2012-11-07T02:57:57.353</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\login\index.js">
       <PackagePath>js\login\index.js</PackagePath>
-      <Modified>2012-11-02T02:40:34.876</Modified>
+      <Modified>2012-11-07T02:41:17.126</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\mixone.js">
       <PackagePath>js\mixone.js</PackagePath>
-      <Modified>2012-11-02T09:28:49.818</Modified>
+      <Modified>2012-11-07T02:11:16.974</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\navigator.js">
       <PackagePath>js\navigator.js</PackagePath>
@@ -174,7 +182,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\news\index.js">
       <PackagePath>js\news\index.js</PackagePath>
-      <Modified>2012-11-02T08:51:47.436</Modified>
+      <Modified>2012-11-03T05:20:11.276</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\detail\detail.js">
       <PackagePath>www\detail\detail.js</PackagePath>
@@ -182,7 +190,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2012-11-02T08:36:56.114</Modified>
+      <Modified>2012-11-05T08:08:36.010</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -80,6 +80,9 @@
       <PackagePath>images\logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\picture.png">
+      <PackagePath>images\picture.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\smalllogo.png">
       <PackagePath>images\smalllogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -103,6 +106,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\detail\detail.js">
       <PackagePath>js\detail\detail.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\extendedSplash.js">
+      <PackagePath>js\extendedSplash.js</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\buttonClick.js">
       <PackagePath>js\init\buttonClick.js</PackagePath>

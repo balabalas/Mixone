@@ -11,6 +11,7 @@ images\avarts\renren.png
 images\avarts\sina.png
 images\avarts\tx.png
 images\logo.png
+images\picture.png
 images\smalllogo.png
 images\splashscreen.png
 images\storelogo.png
@@ -18,6 +19,7 @@ js\about\index.js
 js\default.js
 js\detail\data.js
 js\detail\detail.js
+js\extendedSplash.js
 js\init\buttonClick.js
 js\init\init.js
 js\init\status.js

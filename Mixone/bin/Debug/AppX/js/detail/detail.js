@@ -1,7 +1,16 @@
 ﻿
+//var commentTemplate = WinJS.Utilities.markSupportedForProcessing(function commentTemplate(itemPromise) {
+
+//});
+
+
 (function () {
 
     'use strict';
+
+    //var commentArray = [];
+    //var commentContentDiv = '';
+    WinJS.Binding.optimizeBindingReferences = true;
 
     WinJS.UI.Pages.define("/www/detail/detail.html", {
         // 每当用户导航至此页面时都要调用此功能。它
@@ -11,10 +20,18 @@
             //if (options && options.item) {
             //    showLog.textContent = options.item;
             //}
+            var guid = '', from = '';
+            var detailSrc = document.getElementById('detailSource');
+            var listView = element.querySelector('#detaillistview').winControl;
             if (options && options.src && options.src.id) {
-                var guid = options.src.id.slice(4);
-                console.log(guid);
+                guid = options.src.id.slice(4);
+                from = options.src.id.slice(0, 4);
+                detailSrc.textContent = '（' + options.src.source + '）';
+                console.log(from + '---' + guid);
+                //getComments(from, guid, element);
             }
+
+
             /**
             * log all values in options.src
             * can't use options.src.length
@@ -38,8 +55,5 @@
             // TODO: 响应 viewState 的更改。
         }
     });
-
-
-
 
 })();
