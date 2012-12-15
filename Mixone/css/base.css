@@ -1,0 +1,41 @@
+﻿/**
+ *  base.css
+ *  defined some global style!
+ **/
+
+body {
+    background-color: #B8E768 !important;
+}
+
+.titleMixOne {
+    font-size: 4vw;
+    margin-left: 1vw;
+}
+
+.myBackbutton {
+    color: red !important;
+}
+
+.marginMainContent {
+    margin-left: 6vw;
+    margin-top: 5vh;
+}
+
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
+
+.font12pt {
+    font-size: 12pt;
+}
+
+.font14pt {
+    font-size: 14pt;
+}
+
+

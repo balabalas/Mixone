@@ -13,184 +13,160 @@
     <RegisteredVersion>1.0.1.1</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\bin\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2012-11-05T08:08:37.479</Modified>
+      <Modified>2012-12-12T02:57:57.251</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\about\index.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\about\index.css">
       <PackagePath>css\about\index.css</PackagePath>
       <Modified>2012-04-02T12:08:56.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\detail\detail.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\base.css">
+      <PackagePath>css\base.css</PackagePath>
+      <Modified>2012-12-12T01:09:13.254</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\detail\detail.css">
       <PackagePath>css\detail\detail.css</PackagePath>
-      <Modified>2012-11-03T05:16:57.709</Modified>
+      <Modified>2012-12-12T01:15:22.766</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\init.css">
-      <PackagePath>css\init.css</PackagePath>
-      <Modified>2012-10-27T15:19:52.974</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\init\main.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\init\main.css">
       <PackagePath>css\init\main.css</PackagePath>
-      <Modified>2012-10-27T15:52:56.707</Modified>
+      <Modified>2012-12-11T03:07:29.900</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\login\index.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\login\index.css">
       <PackagePath>css\login\index.css</PackagePath>
-      <Modified>2012-10-28T16:24:23.456</Modified>
+      <Modified>2012-12-11T06:55:06.072</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\news\news.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\news\news.css">
       <PackagePath>css\news\news.css</PackagePath>
-      <Modified>2012-11-02T14:02:35.280</Modified>
+      <Modified>2012-12-14T08:28:32.674</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\css\default.css">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\css\default.css">
       <PackagePath>css\default.css</PackagePath>
-      <Modified>2012-11-05T09:31:21.753</Modified>
+      <Modified>2012-12-11T07:40:02.181</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\detail\detail.css">
-      <PackagePath>www\detail\detail.css</PackagePath>
-      <Modified>2012-11-02T07:01:50.359</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\default.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\default.html">
       <PackagePath>default.html</PackagePath>
-      <Modified>2012-11-05T11:57:02.258</Modified>
+      <Modified>2012-12-11T06:35:32.936</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\about\index.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\about\index.html">
       <PackagePath>www\about\index.html</PackagePath>
-      <Modified>2012-10-28T15:25:31.469</Modified>
+      <Modified>2012-12-11T06:26:58.554</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\detail\detail.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\detail\detail.html">
       <PackagePath>www\detail\detail.html</PackagePath>
-      <Modified>2012-11-03T05:18:54.836</Modified>
+      <Modified>2012-12-14T08:34:51.546</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\main.html">
-      <PackagePath>www\init\main.html</PackagePath>
-      <Modified>2012-10-27T15:54:17.420</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\status.html">
-      <PackagePath>www\init\status.html</PackagePath>
-      <Modified>2012-11-07T02:56:56.440</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\head.html">
-      <PackagePath>www\init\head.html</PackagePath>
-      <Modified>2012-10-27T11:55:03.086</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\init\index.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\init\index.html">
       <PackagePath>www\init\index.html</PackagePath>
-      <Modified>2012-11-07T02:56:45.772</Modified>
+      <Modified>2012-12-11T06:35:16.525</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\login\login.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\login\login.html">
       <PackagePath>www\login\login.html</PackagePath>
-      <Modified>2012-10-28T16:23:37.431</Modified>
+      <Modified>2012-12-11T06:26:35.100</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\news\news.html">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\news\news.html">
       <PackagePath>www\news\news.html</PackagePath>
-      <Modified>2012-11-01T14:09:03.618</Modified>
+      <Modified>2012-12-14T05:03:52.262</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\avarts\kx.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\www\setting\setting.html">
+      <PackagePath>www\setting\setting.html</PackagePath>
+      <Modified>2012-12-11T06:35:21.758</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\avarts\kx.png">
       <PackagePath>images\avarts\kx.png</PackagePath>
       <Modified>2012-10-27T13:51:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\avarts\renren.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\avarts\renren.png">
       <PackagePath>images\avarts\renren.png</PackagePath>
       <Modified>2012-10-27T13:48:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\avarts\sina.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\avarts\sina.png">
       <PackagePath>images\avarts\sina.png</PackagePath>
       <Modified>2012-10-27T13:47:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\avarts\tx.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\avarts\tx.png">
       <PackagePath>images\avarts\tx.png</PackagePath>
       <Modified>2012-10-27T13:49:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\logo.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\logo.png">
       <PackagePath>images\logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2012-10-26T07:41:16.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\picture.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\picture.png">
       <PackagePath>images\picture.png</PackagePath>
       <Modified>2012-11-02T15:01:38.813</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\smalllogo.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\smalllogo.png">
       <PackagePath>images\smalllogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2012-10-26T07:53:20.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\splashscreen.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\splashscreen.png">
       <PackagePath>images\splashscreen.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2012-10-26T08:25:58.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\images\storelogo.png">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\images\storelogo.png">
       <PackagePath>images\storelogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2012-10-27T07:09:43.888</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\about\index.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\about\index.js">
       <PackagePath>js\about\index.js</PackagePath>
       <Modified>2012-04-02T12:08:56.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\default.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\default.js">
       <PackagePath>js\default.js</PackagePath>
-      <Modified>2012-11-07T02:39:03.325</Modified>
+      <Modified>2012-12-12T00:39:10.680</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\detail\data.js">
-      <PackagePath>js\detail\data.js</PackagePath>
-      <Modified>2012-11-02T08:35:33.768</Modified>
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\detail\adjustItem.js">
+      <PackagePath>js\detail\adjustItem.js</PackagePath>
+      <Modified>2012-12-12T03:03:46.632</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\detail\detail.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\detail\detail.js">
       <PackagePath>js\detail\detail.js</PackagePath>
-      <Modified>2012-11-03T05:19:21.652</Modified>
+      <Modified>2012-12-13T08:02:59.664</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\extendedSplash.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\extendedSplash.js">
       <PackagePath>js\extendedSplash.js</PackagePath>
       <Modified>2012-11-05T09:16:08.461</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\buttonClick.js">
-      <PackagePath>js\init\buttonClick.js</PackagePath>
-      <Modified>2012-11-07T02:19:36.241</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\init.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\init\init.js">
       <PackagePath>js\init\init.js</PackagePath>
-      <Modified>2012-10-28T12:52:28.891</Modified>
+      <Modified>2012-12-12T06:57:38.034</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\init\status.js">
-      <PackagePath>js\init\status.js</PackagePath>
-      <Modified>2012-11-07T02:57:57.353</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\login\index.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\login\index.js">
       <PackagePath>js\login\index.js</PackagePath>
-      <Modified>2012-11-07T02:41:17.126</Modified>
+      <Modified>2012-12-11T02:52:28.761</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\mixone.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\mixone.js">
       <PackagePath>js\mixone.js</PackagePath>
-      <Modified>2012-11-07T02:11:16.974</Modified>
+      <Modified>2012-12-13T08:02:13.025</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\navigator.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\navigator.js">
       <PackagePath>js\navigator.js</PackagePath>
       <Modified>2012-10-27T17:19:59.728</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\news\adjust.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\news\adjust.js">
       <PackagePath>js\news\adjust.js</PackagePath>
-      <Modified>2012-11-01T14:08:03.103</Modified>
+      <Modified>2012-12-12T08:43:48.565</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\news\data.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\news\data.js">
       <PackagePath>js\news\data.js</PackagePath>
       <Modified>2012-11-01T16:23:45.280</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\js\news\index.js">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\js\news\index.js">
       <PackagePath>js\news\index.js</PackagePath>
-      <Modified>2012-11-03T05:20:11.276</Modified>
+      <Modified>2012-12-14T05:51:36.907</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\www\detail\detail.js">
-      <PackagePath>www\detail\detail.js</PackagePath>
-      <Modified>2012-11-02T07:01:50.082</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\AllenHeavey\Documents\Visual Studio 2012\Projects\Mixone\Mixone\bin\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\AllenHeavey\documents\visual studio 2012\Projects\Mixone\Mixone\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2012-11-05T08:08:36.010</Modified>
+      <Modified>2012-12-12T02:57:54.597</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -6,11 +6,15 @@
     <title>news</title>
 
     <!-- WinJS 引用 -->
-    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
+    <!-- global styles and scripts -->
     <link href="/css/default.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
+
+    <!-- local styles and scripts -->
     <link href="/css/news/news.css" rel="stylesheet" />
     <script src="/js/news/data.js"></script>
     <script src="/js/news/index.js"></script>
@@ -18,14 +22,19 @@
 <body>
     <!-- 将加载和显示的内容。 -->
     <div id="newsContenPage">
-        <header aria-label="Header content" role="banner">
-            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+        <header id="news_header" aria-label="Header content" role="banner">
+            <button class="win-backbutton myBackbutton" aria-label="Back" disabled type="button"></button>
+            <span class="titleMixOne">MixOne</span>
         </header>
         <div id="newsContent" style="overflow-y:scroll">
 		    <div id="newsList">
                 <div id="basicMessageListView" data-win-control="WinJS.UI.ListView"
-                    data-win-options="{itemDataSource: AllMessages.itemList.dataSource,
+                    data-win-options="{
+                    itemDataSource: AllMessages.itemList.dataSource,
                     itemTemplate: myListTemplate,
+                    selectionMode: 'none', 
+                    tapBehavior: 'none', 
+                    swipeBehavior: 'none',
                     layout: { type: WinJS.UI.GridLayout }}
                     "></div>
 		    </div>

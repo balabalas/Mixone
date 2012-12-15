@@ -11,20 +11,39 @@
 
     <!-- Mixone 引用 -->
     <link href="/css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/init/main.css" />
+    <script src="/js/init/init.js"></script>
 
-    <link rel="stylesheet" href="/css/init.css" />
-    <script src="/js/init/status.js"></script>
-    <script src="/js/init/buttonClick.js"></script>
     </head>
-    <body>     
-        <div id="initRootGrid">
-            <div id="header" role="contentinfo" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: '/www/init/head.html'}"></div>
+    <body>  
+          <div id="initRootGrid">
+            <div id="main_header">
+                <div>
+                    <h1 id="clientName">MixOne</h1>
+                    <div id="clientIntro">无隙联结您的社交网络</div>
+                </div>
+            </div>
             <div id="loginStatus">
                 <div id="statusBox">
             
                 </div>
             </div>
-            <div id="mainContent" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: '/www/init/main.html'}"></div>
-        </div>
+            <div id="main_MainContent">
+                <div id="main_ContentGrid">
+                    <div id="gridBox1">
+                        <button class="circleButton" id="checkMessage"><span class="mediumFont">查看消息</span></button>
+                    </div>
+                    <div id="gridBox2">
+                        <button class="circleButton" id="addAccount"><span class="mediumFont">添加账号</span></button>
+                    </div>
+                    <div id="gridBox3">
+                        <button class="circleButton" id="prefrence"><span class="mediumFont">偏好设置</span></button>
+                    </div>
+                    <div id="gridBox4">
+                        <button class="circleButton" id="aboutMixone"><span class="mediumFont">关于</span></button>
+                    </div>
+                </div>
+            </div>
+        </div> 
     </body>
 </html>

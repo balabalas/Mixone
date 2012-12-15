@@ -54,8 +54,8 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="css\about\index.css" />
+    <Content Include="css\base.css" />
     <Content Include="css\detail\detail.css" />
-    <Content Include="css\init.css" />
     <Content Include="css\init\main.css" />
     <Content Include="css\login\index.css" />
     <Content Include="css\news\news.css" />
@@ -72,12 +72,10 @@
     <Content Include="js\about\index.js" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
-    <Content Include="js\detail\data.js" />
+    <Content Include="js\detail\adjustItem.js" />
     <Content Include="js\detail\detail.js" />
     <Content Include="js\extendedSplash.js" />
-    <Content Include="js\init\buttonClick.js" />
     <Content Include="js\init\init.js" />
-    <Content Include="js\init\status.js" />
     <Content Include="js\login\index.js" />
     <Content Include="js\mixone.js" />
     <Content Include="js\navigator.js" />
@@ -85,15 +83,11 @@
     <Content Include="js\news\data.js" />
     <Content Include="js\news\index.js" />
     <Content Include="www\about\index.html" />
-    <Content Include="www\detail\detail.css" />
     <Content Include="www\detail\detail.html" />
-    <Content Include="www\detail\detail.js" />
-    <Content Include="www\init\main.html" />
-    <Content Include="www\init\status.html" />
-    <Content Include="www\init\head.html" />
     <Content Include="www\init\index.html" />
     <Content Include="www\login\login.html" />
     <Content Include="www\news\news.html" />
+    <Content Include="www\setting\setting.html" />
     <None Include="Mixone_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

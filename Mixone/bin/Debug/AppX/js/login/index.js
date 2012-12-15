@@ -4,20 +4,9 @@
 
     'use strict';
 
-    var mx = null,
-        status = null,
-        ms = null;
-
-    if (MixOne && MixOne.Auth) {
-        mx = MixOne.Auth;
-    }
-    if (MixOne && MixOne.Serve) {
-        ms = MixOne.Serve;
-    }
-
-    if (MixOne && MixOne.Status) {
-        status = MixOne.Status;
-    }
+    var mx = MixOne.Auth || {},
+        status = MixOne.Status || {},
+        ms = MixOne.Serve || {};
 
     var page = WinJS.UI.Pages.define("/www/login/login.html", {
         ready: function (element, options) {
@@ -36,8 +25,13 @@
         var flag = 0,
             wflag = 0;
 
-        if (status && status.Sina && status.Sina.login && mx.Sina.login) {
+        if (!MixOne.etc.checkNetwork()) {
+            return;
+        }
+
+        if (status && status.Sina && status.Sina.login) {
             e.preventDefault();
+            console.log('sina has login!: login.index.js');
             return;
         }
         else if(mx && mx.Sina) {
@@ -68,11 +62,8 @@
                     return;
                 }
                 if (s.token && s.token.length > 4) {
+                    sms.getUser();
                     sms.getNews();
-                    status.Sina.login = true;
-                    localStorage.setItem('status', JSON.stringify(status));
-                    localStorage.setItem('auth', JSON.stringify(mx));
-                    MixOne.etc.checkLogin();
                     clearInterval(sweibo);
                 }
             }, 50);
@@ -84,6 +75,7 @@
             tokenFlag = 0;
 
         if (status && status.TX && status.TX.login) {
+            console.log('tx has login: login.index.js');
             e.preventDefault();
         }
         else if (mx && mx.TX) {
@@ -114,11 +106,10 @@
                 }
 
                 if (t.token && t.token.length > 4) {
-                    status.TX.login = true;
-                    mst.getNews();
+
                     mst.getUser();
-                    localStorage.setItem('status', JSON.stringify(status));
-                    MixOne.etc.checkLogin();
+                    mst.getNews();
+
                     clearInterval(tWeibo);
                 }
 
@@ -134,6 +125,7 @@
     function loginRR() {
         console.log('start to login renren');
         if (status && status.RR && status.RR.login) {
+            console.log('renren has login: login.index.js');
             e.preventDefault();
         }
         else if (mx && mx.RR) {

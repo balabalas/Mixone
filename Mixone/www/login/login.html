@@ -10,22 +10,25 @@
 
         <!-- Mixone 引用 -->
         <link href="/css/default.css" rel="stylesheet" />
+        <link href="/css/base.css" rel="stylesheet" />
 
         <link rel="stylesheet" href="/css/login/index.css" />
         <script src="/js/login/index.js"></script>
     </head>
     <body>
-        <div id="loginMainContent">
-        <header aria-label="Header content" role="banner">
-            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
-            <h1 class="titlearea win-type-ellipsis">
-                <span class="pagetitle">添加账号</span>
-            </h1>
-        </header>
-        <div>
-            <button id="addSina">新浪微博</button>
-            <button id="addTX">腾讯微博</button>
-            <button id="addRR">人人网</button>
+        <div class="marginMainContent">
+            <header aria-label="Header content" role="banner">
+                <button class="win-backbutton myBackbutton" aria-label="Back" disabled type="button"></button><span class="titleMixOne">MixOne</span>
+                <h1 class="titlearea win-type-ellipsis">
+                    <span class="pagetitle">添加账号:</span>
+                </h1>
+            </header>
+            <div>
+                <ul id="login_Buttons">
+                    <li><span class="login_spanButton" id="addSina">新浪微博</span><span class="describeText">添加新浪微博账号</span></li>
+                    <li><span class="login_spanButton" id="addTX">腾讯微博</span><span class="describeText">添加腾讯微博账号</span></li>
+                    <li><span class="login_spanButton" id="addRR">人人网</span><span class="describeText">添加人人网账号</span></li>
+                </ul>
             </div>
         </div>
     </body>

@@ -10,6 +10,8 @@
     <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/css/base.css" rel="stylesheet" />
     <link href="/css/detail/detail.css" rel="stylesheet" />
     <script src="/js/detail/detail.js"></script>
 </head>
@@ -17,31 +19,21 @@
     <div class="detailPage">
         <div id="detailLeft">
             <header aria-label="Header content" role="banner">
-                <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+                <button class="win-backbutton myBackbutton" aria-label="Back" disabled type="button"></button>
                 <p class="detail_title">MixOne<span id="detailSource"></span></p>
             </header>
             <section aria-label="Main content" role="main">
-                <!--<div id="detailMessageContent">
-                    <div id="detailMessageView" data-win-control="WinJS.UI.ListView"
-                        data-win-options="{itemDataSource: AllMessages.itemList.dataSource,
-                        itemTemplate: myListTemplate,
-                        layout: { type: WinJS.UI.GridLayout }}
-                        "></div>
-		        </div>-->
                 <div id="detail_content">
                     <div id="detail_avart">
-                        <div class="floatLeft"><img src="http://tp4.sinaimg.cn/1622978163/50/1254133239/1" alt=""/></div>
+                        <div class="floatLeft"><img id="user_avart" src=" " alt=""/></div>
                         <div class="floatRight"><img src="/images/picture.png"/></div>
-                        <span id="detail_username">DMDGeeker</span>
+                        <span id="detail_username"></span>
                         
                     </div>
                     <div>
-                        <p class="font12pt" id="detail_text">
-                            【#小米手机MIUI系统#主题应用推送下载】小米已搭建专门的网页版市场，不仅可在电脑端直接下载，还能使用在线推送下载，完全省掉繁琐的数据线连接等操作。方法：手机端开启网络登录米聊—电脑端登录小米账号（和米聊同一账号）—选择想要下载东西—点击安装到手机！欢迎转发分享 http://t.cn/zlgcozM
-                        </p>
-                        <div class="font12pt" id="detail_retweeted">
-						  <span id="detail_retweetUser">小米粉丝后援会</span><span>:</span><span id="detail_retweetText">
-						  	#我是米粉#分享小米社区米粉（ysy5779 ）的照片[爱你]，是可耐漂亮滴美女有木有？有木有像@杨幂 呢？[思考]爱自拍的米粉朋友你在哪里呢？快快围观美女帅哥吧http://t.cn/zWICysU
+                        <p class="font14pt" id="detail_text"></p>
+                        <div class="font14pt" id="detail_retweeted">
+						  <span id="detail_retweetUser"></span><span>:</span><span id="detail_retweetText">
 						  </span>
 						</div>
                     </div>
@@ -84,5 +76,6 @@
 
         </div>
     </div>
+    <script src="/js/detail/adjustItem.js" ></script>
 </body>
 </html>

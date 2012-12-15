@@ -1,26 +1,96 @@
 ﻿body {
     width: 100%;
     height: 100%;
+    background-color: #DBEAF9;
+    color: black;
 }
 
-#contentGrid div {
-    background-color: blue;
-    margin: 10px;
-}
-
-#contentGrid button {
+#initRootGrid {
     width: 100%;
     height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
-@media screen and (min-width: 760px) {
-    #contentGrid {
-        width: 70vw;
+#loginStatus {
+    font-size: 24pt;
+    background-color: #00BD39;
+}
+
+#main_header {
+    /**border: 3px solid rgba(170, 42, 207, 0.53); */
+    background-color: #1d1ab2;
+}
+
+#main_MainContent {
+    background-color:#CCF600;
+}
+
+#clientName {
+    font: 50pt/52pt "Segoe UI Semilight";
+    color: black;
+    margin-top: 2%;
+}
+
+#clientIntro {
+    font: 12pt/15pt "Segoe UI";
+    color: black;
+    letter-spacing: 0.1em;
+}
+
+@media screen and (min-width: 840px) {
+
+    #clientName {
+        margin-left: 1.2em;
+    }
+    #clientIntro {
+        margin-left: 18%;
+    }
+
+    #initRootGrid {
+        width: 100vw;
         height: 100vh;
         display: -ms-grid;
-        -ms-grid-columns: 30vw 30vw;
-        -ms-grid-rows: 28vh 28vh;
-        margin-top: 5vh;
+        -ms-grid-columns: auto 1fr;
+        -ms-grid-rows: 23vh 1fr;
+   }
+
+    #main_header {
+        -ms-grid-column-span: 2;
+        -ms-grid-row: 1;
+    }
+
+    #loginStatus {
+        width: 30vw;
+        -ms-grid-column: 1;
+        -ms-grid-row: 2;
+        font-size: 20pt;
+        padding-left: 1em;
+    }
+
+    #statusBox p {
+    }
+
+    #main_MainContent {
+        width: 70vw;
+        text-align: center;
+        background-color: #DFBC01;
+        -ms-grid-column: 2;
+        -ms-grid-row: 2;
+    }
+
+    #main_ContentGrid {
+        /*background-color: #DBEAF9;*/
+        width: 48vw;
+        display: -ms-grid;
+        -ms-grid-columns: 23vw 23vw;
+        -ms-grid-rows: 35vh 35vh;
+        padding-top: 2em;
+        margin: 0 auto;
+    }
+
+    #main_ContentGrid div {
+        margin: 1em;
     }
 
     #gridBox1 {
@@ -40,6 +110,33 @@
         -ms-grid-column: 2;
         -ms-grid-row: 2;
     }
+
+    .circleButton {
+        color: black;
+        width: 14vw;
+        height: 14vw;
+        border-radius: 14vw;
+        background-color: #DF1101;
+        box-shadow: #DF3601 2px 2px 2px, #DF3601 -2px -2px 2px, #DF3601 -2px 2px 2px, #DF3601 2px -2px 2px;
+        letter-spacing: 0.2em;
+    }
+
+    #main_ContentGrid .cirecleButton:hover {
+        background-color: #DF4001;
+        color: #1AB801;
+    }
+
+    /*.crecleButton::after {
+        border: 2px solid #DF1101;
+        
+    }*/
+
+    .mediumFont {
+        font-size: 16pt;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+
+    }
 }
 
 @media (-ms-view-state: filled) {
@@ -47,7 +144,30 @@
 }
 
 @media (-ms-view-state: snapped) {
-    #contentGrid div {
+
+    #main_header {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #clientName {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #clientIntro {
+        display: none;
+    }
+
+    #loginStatus {
+        font-size: 17pt;
+        margin: 0;
+        padding: 0;
+    }
+
+    #main_ContentGrid div {
         margin: 0;
         padding: 0;
         margin-bottom: 2vh;

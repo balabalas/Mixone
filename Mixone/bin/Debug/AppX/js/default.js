@@ -4,37 +4,32 @@
     "use strict";
 
     WinJS.Binding.optimizeBindingReferences = true;
-    var thatTime = (new Date()).toString();
-    var app = WinJS.Application;
+
+    var app = WinJS.Application,
+        networkInfo = Windows.Networking.Connectivity.NetworkInformation;
     var activation = Windows.ApplicationModel.Activation;
     //I add it here! (Allen Heavey 2012/10/27)
     var defaultUrl = '/www/init/index.html';
     var nav = WinJS.Navigation,
-        splash = null;
+        loginPromise = {};
 
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
-
-            splash = args.detail.splashScreen;
-            MixOne.coordinates = splash.imageLocation;
-
-            splash.addEventListener('dismissed', onSplashScreenDismissed, false);
-            ExtendedSplash.show(splash);
-            window.addEventListener('resize', onResize, false);
 
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: 此应用程序刚刚启动。在此处初始化
                 //您的应用程序。
                 //return WinJS.Navigation.navigate(defaultUrl);
                 if (MixOne && MixOne.etc && MixOne.etc.checkNetwork) {
-                    console.log('start to check network!');
-                    MixOne.etc.checkNetwork();
+                    console.log("network is " + MixOne.etc.checkNetwork());
+                    console.log('after checking network status!');
                 }
+
+                //return WinJS.Navigation.navigate(defaultUrl);
 
             } else {
                 // TODO: 此应用程序已从挂起状态重新激活。
                 // 在此处恢复应用程序状态。
-                console.log('restart the application!');
                 var _url = WinJS.Application.sessionState.lastUrl || defaultUrl;
                 return nav.navigate(_url);
             }
@@ -43,18 +38,27 @@
                 nav.history = app.sessionState.history;
             }
             args.setPromise(WinJS.UI.processAll().then(function () {
-                //checkLogin();
-                MixOne.etc.checkLogin = checkLogin;
-                return new WinJS.Promise.as(checkLogin());
-
-            }).then(function () {
-                ExtendedSplash.remove();
-                if (nav.location) {
-                    nav.history.current.initialPlaceholder = true;
-                    return nav.navigate(nav.location, nav.state);
-                } else {
-                    return nav.navigate(Application.navigator.home);
+                
+                var connect = networkInfo.getInternetConnectionProfile();
+                if (connect !== null) {
+                    checkLogin();
                 }
+                else {
+                    _initNotLogin();
+                }
+
+                MixOne.loginPromise = loginPromise;
+                MixOne.etc.checkLogin = checkLogin;
+
+                //if (nav.location) {
+                //    nav.history.current.initialPlaceholder = true;
+                //    return nav.navigate(nav.location, nav.state);
+                //} else {
+                //    return nav.navigate(Application.navigator.home);
+                //}
+
+                return nav.navigate(defaultUrl);
+
             }));
         }
     };
@@ -70,141 +74,144 @@
         });
     });
 
+    function _initNotLogin() {
+        /*
+         * init login status
+         * all set false!
+         **/
+
+        var status = MixOne.Status,
+            auth = MixOne.Auth;
+
+        if (status.Sina) status.Sina.login = false;
+        if (status.TX) status.TX.login = false;
+        if (status.RR) status.RR.login = false;
+        if (auth.Sina) auth.Sina.login = false;
+        if (auth.TX) auth.TX.login = false;
+        if (auth.RR) auth.RR.login = false;
+    }
+
     function checkLogin() {
 
-        var statusStore = localStorage.getItem('status'),
-            oauth = localStorage.getItem('auth'),
-            status = null,
-            auth = null,
+        var status = MixOne.Status,
+            auth = MixOne.Auth,
             dataPromise = [],
-            target = MixOne.Status;
-
-        var loginPromise = [],
             xhrArray = [];
 
-        if (statusStore !== null && statusStore !== '[object Object]') {
-            status = JSON.parse(statusStore);
-        }
-        if (oauth !== null && oauth !== ['object Object']) {
-            auth = JSON.parse(oauth);
-        }
+        _initNotLogin();
 
         if (status !== null && auth !== null) {
-            if (status['Sina'] && status['Sina']['login'] && auth['Sina'] && auth['Sina']['login']) {
-                var sina_url = 'https://api.weibo.com/2/users/show.json' + '?access_token='
-                    + auth.Sina.token + '&uid=' + auth.Sina.uid;
+            if (status['Sina'] && auth['Sina'] ) {
+                var sina_url = 'https://api.weibo.com/2/users/show.json' + '?access_token=' + auth.Sina.token + '&uid=' + auth.Sina.uid;
 
-                WinJS.xhr({ url: sina_url }).then(function (req) {
-                    if (req.status === 200) {
-                        var res = '', o = {};
-                        if (req.responseText !== null) {
-                            res = JSON.parse(req.responseText);
+                var sina_xhr = new XMLHttpRequest();
+                try{
+                    sina_xhr.open("GET", sina_url, false);
+                }
+                catch (err) {
+                    console.log("sina err: " + err);
+                }
+                
+
+                sina_xhr.onreadystatechange = function () {
+
+                    if (sina_xhr.readyState === 4) {
+                        if (sina_xhr.status === 200 || sina_xhr.status === 304) {
+                            var res = '', o = {};
+                            res = JSON.parse(sina_xhr.responseText);
                             o.name = res['screen_name'];
                             o.type = 'sina';
 
-                            loginPromise.push(o);
+                            loginPromise.Sina = o;
                         }
                         else {
-                            MixOne.Auth.Sina.login = false;
-                            MixOne.Status.Sina.login = false;
+                            auth.Sina.login = false;
+                            status.Sina.login = false;
                         }
-                    }
-                    else {
-                        MixOne.Auth.Sina.login = false;
-                        MixOne.Status.Sina.login = false;
-                    }
-                });
+
+                        console.log("sina xhr login --> " + (new Date().getTime()));
+                    }                    
+                }
+
+                sina_xhr.onerror = function () {
+                    console.log("get sina user info error!　");
+                }
+
+                sina_xhr.timeout = 20000;
+                sina_xhr.ontimeout = function () {
+                    console.log("detect auth status timeout!");
+                }
+
+                sina_xhr.send(null);
             }
 
-            if (status['TX'] && status['TX']['login'] && auth['TX'] && auth['TX']['login']) {
-                var tx = auth['TX'];
-                var tx_url = 'https://open.t.qq.com/api/user/info?access_token=' + tx.token +
-            '&oauth_consumer_key=' + tx.appkey + '&openid=' + tx.openid + '&clientip= ' +
-            tx.ipaddress + '&oauth_version=2.a' + '&scope=all' + '&format=json';
+            if (status['TX'] && auth['TX']) {
+                var tx = auth['TX'],
+                    tx_xhr = new XMLHttpRequest();
+                var tx_url = 'https://open.t.qq.com/api/user/info?access_token=' + tx.token + '&oauth_consumer_key=' + tx.appkey + '&openid=' + tx.openid + '&clientip= ' + tx.ipaddress + '&oauth_version=2.a' + '&scope=all' + '&format=json';
 
-                WinJS.xhr({ url: tx_url }).then(function (req) {
-                    var o = {};
-                    if (req.status === 200) {
-                        if (req.responseText !== null) {
-                            var res = JSON.parse(req.responseText);
+                try{
+                    tx_xhr.open("GET", tx_url, false);
+                }
+                catch (err){
+                    console.log("tx err: "+err);
+                }
 
+                tx_xhr.onreadystatechange = function () {
+                    if (tx_xhr.readyState === 4) {
+                        if (tx_xhr.status === 200 || tx_xhr.status === 304) {
+                            var res = JSON.parse(tx_xhr.responseText), o = {};
+                            if (res.data === null || res.data === 'null') return;
                             o.name = res['data']['nick'];
                             o.type = 'tx';
-                            MixOne.Status.TX.username = o.name;
-                            MixOne.Status.TX.login = true;
+                            status.TX.username = o.name;
+                            status.TX.login = true;
 
-                            loginPromise.push(o);
+                            loginPromise.TX = o;
                         }
                         else {
-                            MixOne.Auth.TX.login = false;
-                            MixOne.Status.TX.login = false;
+                            auth.TX.login = false;
+                            status.TX.login = false;
                         }
+                        console.log("tx xhr login --> " + (new Date().getTime()));
                     }
-                    else {
-                        MixOne.Auth.TX.login = false;
-                        MixOne.Status.TX.login = false;
-                    }
-                });
+                }
 
+                tx_xhr.onerror = function () {
+                    console.log("get tx user info error! ");
+                }
+                
+                tx_xhr.timeout = 20000;
+                tx_xhr.ontimeout = function () {
+                    console.log("get TX auth status timeout!");
+                }
+                
+                tx_xhr.send(null);
             }
 
-            if (status['RR'] && status['RR']['login'] && auth['RR'] && auth['RR']['login']) {
-                var rr_url = '';
-                WinJS.xhr({ url: rr_url }).then(function (req) {
-                    if (req.status === 200) {
-                        if (req.responseText !== null) {
-                            var o = {}, res = JSON.parse(req.responseText);
-
-                            loginPromise.push(o);
-                        }
-                        else {
-                            MixOne.Auth.RR.loign = false;
-                            MixOne.Status.RR.login = false;
-                        }
-                    }
-                    else {
-                        MixOne.Auth.RR.loign = false;
-                        MixOne.Status.RR.login = false;
-                    }
-                });
-            }
+            //if (status['RR'] && auth['RR']) {
+            //    var rr_url = '';
+            //    WinJS.xhr({ url: rr_url }).then(function (req) {
+            //        console.log('enter renren xhr: default.js');
+            //        if (req.status === 200) {
+            //            if (req.responseText !== null) {
+            //                var o = {}, res = JSON.parse(req.responseText);
+            //                loginPromise.RR = o;
+            //            }
+            //            else {
+            //                auth.RR.loign = false;
+            //                status.RR.login = false;
+            //            }
+            //        }
+            //        else {
+            //            auth.RR.loign = false;
+            //            status.RR.login = false;
+            //        }
+            //    });
+            //}
         }
-        else {
-            target['Sina']['login'] = false;
-            target['TX']['login'] = false;
-            target['RR']['login'] = false;
-            localStorage.setItem('status', JSON.stringify(target));
-        }
-
-        if (loginPromise.length === 0) {
-            MixOne.Status.Sina.login = false;
-            MixOne.Status.TX.login = false;
-            MixOne.Status.RR.login = false;
-            MixOne.Auth.Sina.login = false;
-            MixOne.Auth.TX.login = false;
-            MixOne.Auth.RR.login = false;
-        }
-
-        localStorage.setItem('status',JSON.stringify(MixOne.Status));
-
-        MixOne.loginPromise = loginPromise;
 
     }
-
-    function onSplashScreenDismissed(e) {
-        MixOne.dismissed = true;
-
-    }
-
-    function onResize() {
-        // Safely update the extended splash screen image coordinates. This function will be fired in response to snapping, unsnapping, rotation, etc...
-        if (splash) {
-            // Update the coordinates of the splash screen image.
-            MixOne.coordinates = splash.imageLocation;
-            ExtendedSplash.updateImageLocation(splash);
-        }
-    }
-
 
     app.oncheckpoint = function (args) {
         // TODO: 即将挂起此应用程序。在此处保存
@@ -221,6 +228,9 @@
                 var loginStatus = JSON.stringify(MixOne.Status);
                 localStorage.setItem('status', loginStatus);
                 console.log('setItem status :' + loginStatus);
+            }
+            if (MixOne.Auth) {
+                localStorage.setItem('auth',JSON.stringify(MixOne.Auth));
             }
         }
         app.sessionState.history = nav.history;

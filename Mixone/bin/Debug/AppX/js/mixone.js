@@ -1,59 +1,86 @@
-﻿var MixOne = {};
+﻿/*
+ * MixOne.js 
+ * main javascript file. 
+ * defined a lot of value and method for Global object: MixOne
+ * 
+ **/
+(function () {
 
-(function(){
     'use strict';
 
     var MixOne = MixOne || {};
-    
+    var number = 30;
+
     MixOne.etc = {
         checkNetwork: checkNetwork,
         getIP: getIpAddress
     };
-    MixOne.News = {};
+    MixOne.News = {
+        Sina: [],
+        TX: [],
+        RR: []
+    };
 
-    MixOne.News.Sina = [];
-    MixOne.News.TX = [];
-    MixOne.News.RR = [];
+    MixOne.Serve = {
+        TX: {
+            getNews: getTXWeibo,
+            refreshToken: refreshTXToken,
+            getCode: getTXCode,
+            getToken: getTXToken,
+            getUser: getTXUser
+        },
+        Sina: {
+            getNews: getSinaWeibo,
+            getCode: getSinaCode,
+            getToken: getSinaToken,
+            getUser: getSinaUser
+        },
+        RR: {
+            getToken: getRRToken
+        },
+        KX: {}
+    };
 
-    var settings = localStorage.getItem('settings'),
-        number = 30;
-
-    if (settings) {
-        var setting = JSON.parse(settings);
-        number = setting.number || 20;
-    }
+    MixOne.loginPromise = [];
 
     function _init() {
+        /**
+         * If has local store item status
+         *     then get it and init MixOne.Status with it.
+         * else
+         *     reinit MixOne.Status as default.
+         **/
         var _status = localStorage.getItem('status');
         if (_status && _status !== '[object Object]') {
-            var _jStatus = JSON.parse(_status);
+            var _preStatus = JSON.parse(_status);
 
-            if (typeof _jStatus === 'object') {
-                MixOne.Status = _jStatus;
+            if (typeof _preStatus === 'object') {
+                MixOne.Status = _preStatus;
             }
         }
         else {
             _initStatus();
         }
-
+        /**
+         * If has local store item auth.
+         *     then get it and init MixOne.Auth with it.
+         * else 
+         *     reinit MixOne.Auth as default.
+         **/
         var oauth = localStorage.getItem('auth');
-        if (oauth !== null && oauth !== '[object Object]') {
+        if (oauth !== null && oauth !== undefined && oauth !== '[object Object]') {
             if (oauth.length > 6) {
                 var auth = JSON.parse(oauth);
-                if (typeof auth === 'object') {
-                    MixOne.Auth = auth;
-                }
-                else {
-                    _initAuth();
-                }
-            }
-            else {
-                _initAuth();
+                MixOne.Auth = auth;
             }
         }
         else {
             _initAuth();
         }
+        /***
+         * add notConnect method to MixOne.etc to alert user network is not availible.
+         */
+        MixOne.etc.notConnect = _networkNotConnect;
     }
 
     function _initAuth() {
@@ -62,7 +89,7 @@
                 appkey: '801257753',
                 appsecret: '5b90cf75a29585174bef45bf2e1548d4',
                 codeURL: 'https://open.t.qq.com/cgi-bin/oauth2/authorize',
-                redirectURL: 'http://www.mixone.org',
+                redirectURL: 'http://www.dmdgeeker.com',
                 tokenURL: 'https://open.t.qq.com/cgi-bin/oauth2/access_token',
                 ipaddress: '',
                 refreshToken: ''
@@ -87,32 +114,30 @@
     }
 
     function _initStatus() {
-        MixOne.Status = {};
-
-        MixOne.Status.TX = {};
-        MixOne.Status.Sina = {};
-        MixOne.Status.RR = {};
-        MixOne.Status.KX = {};
+        MixOne.Status = {
+            Sina: {
+                login: false
+            },
+            TX: {
+                login: false
+            },
+            RR: {
+                login: false
+            },
+            KX: {
+                login: false
+            }
+        };
     }
 
-    MixOne.Serve = {
-        TX: {
-            getNews: getTXWeibo,
-            refreshToken: refreshTXToken,
-            getCode: getTXCode,
-            getToken: getTXToken,
-            getUser: getTXUser
-        },
-        Sina: {
-            getNews: getSinaWeibo,
-            getCode: getSinaCode,
-            getToken: getSinaToken,
-            getUser: getSinaUser
-        },
-        RR: {
-            getToken: getRRToken
-        },
-        KX: {}
+    function _networkNotConnect() {
+        var msg = new Windows.UI.Popups.MessageDialog('请检查网络连接状态！', '未连接网络');
+        msg.commands.append(new Windows.UI.Popups.UICommand('确定', function (command) {
+
+        }));
+        msg.defaultCommandIndex = 1;
+        msg.cancelCommandIndex = 1;
+        msg.showAsync();
     }
     
     /**
@@ -160,61 +185,70 @@
     function checkNetwork() {
         var networkInfo = Windows.Networking.Connectivity.NetworkInformation,
             internetProfile = networkInfo.getInternetConnectionProfile();
-
         if (internetProfile === null) {
-
-            //var msg = new Windows.UI.Popups.MessageDialog("请确定您的网络保持连接", "网络出错了");
-            //msg.commands.append(new Windows.UI.Popups.UICommand("确定", function (command) {
-
-            //}));
-            ////msg.commands.append(new Windows.UI.Popups.UICommand("", function (command) {
-
-            ////}));
-
-            //msg.defaultCommandIndex = 1;
-            //msg.showAsync();
-
-            return 'no';
+            return false;
         }
         else {
-            return 'yes';
+            return true;
         }
-
-    }
-    /***
-    * server check.
-    */
-    function checkServerNetwork(uri) {
-        var uri = 'http://api.weibo.com/oauth2/authorize';
-
-
     }
 
-    //get ip address
+    /**
+     * get ip address
+     * cause tencent weibo need it to oauth.
+     */
     function getIpAddress(myurl) {
 
         if (!myurl) myurl = 'http://iframe.ip138.com/ic.asp';
         var exp = /([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3})/g,
-            ipaddress = '';
-        WinJS.xhr({
-            tyep: 'GET',
-            url: myurl
-        }).done(function (res) {
-            if (res.status === 200) {
-                var r = res.responseData;
-                if (!exp.test(r)) {
-                    getIpAddress('http://jsonip.com/');
+            ipaddress = '',
+            xhr = new XMLHttpRequest();
+
+        xhr.open('GET', myurl, false);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200 || xhr.status === 304) {
+                    var r = xhr.responseText;
+                    if (!exp.test(r)) {
+                        if (myurl === 'http://iframe.ip138.com/ipcity.asp') {
+                            getIpAddress('http://jsonip.com/');
+                        }
+
+                        return;
+                    }
+                    else {
+                        ipaddress = r.match(exp)[0];
+                    }
+                        
+                    if (MixOne.Auth.TX && ipaddress) {
+                        MixOne.Auth.TX.ipaddress = ipaddress;
+                    }
+                    localStorage.setItem('ipaddress', ipaddress);
                 }
-                ipaddress = res.response.match(exp)[0];
-                if (MixOne.Auth.TX) MixOne.Auth.TX.ipaddress = ipaddress;
-                localStorage.setItem('ipaddress',ipaddress);
+                else if (myurl === 'http://iframe.ip138.com/ipcity.asp') {
+                    getIpAddress('http://jsonip.com/');
+                    return;
+                }
             }
-            else if (myurl === 'http://iframe.ip138.com/ipcity.asp') {
-                getIpAddress('http://jsonip.com/');
+        }
+
+        xhr.onerror = function () {
+            var preIP = localStorage.getItem('ipaddress');
+            if (preIP !== null && exp.test(preIP)) {
+                ipaddress = preIP;
             }
-        }, function (err) {
-            checkNetwork();
-        });
+        }
+
+        xhr.timeout = 10000;
+        xhr.ontimeout = function () {
+            var preIP = localStorage.getItem('ipaddress');
+            if (preIP !== null && exp.test(preIP)) {
+                ipaddress = preIP;
+            }
+        }
+
+        xhr.send(null);
     }
     //get code for all
     function getAuthCode(url, o, type) {
@@ -425,8 +459,8 @@
             '&oauth_consumer_key=' + tx.appkey + '&openid=' + tx.openid + '&clientip= ' +
             tx.ipaddress + '&oauth_version=2.a' + '&scope=all' + '&format=json';
 
-
         xhr.onreadystatechange = function () {
+            var o = {};
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     var res = JSON.parse(xhr.responseText);
@@ -435,11 +469,14 @@
                         tx.login = true;
                         MixOne.Status.TX.username = tx.username;
                         MixOne.Status.TX.login = true;
-
-                        localStorage.setItem('status',JSON.stringify(MixOne.Status));
+                        o.name = tx.username;
+                        o.type = 'tx';
+                        MixOne.loginPromise.TX = o;
+                        console.log('mixone.js--> getTXUser: tx usrname = ' + tx.username);
                     }
                     else {
                         MixOne.Status.TX.login = false;
+                        MixOne.Auth.TX.login = false;
                     }
                 }
                 else {
@@ -452,6 +489,9 @@
         xhr.open('GET',url,false);
         xhr.send(null);
     }
+    /**
+     * convert time from millionseconds to regular format.
+     **/
     function _timeToDate(time) {
         if (time < 1351700000000) {
             time = time * 1000;
@@ -571,20 +611,24 @@
             if(xhr.readyState === 4){
                 if (xhr.status === 200) {
                     var res = JSON.parse(xhr.responseText);
+                    MixOne.loginPromise.Sina = {};
 
                     MixOne.Auth.Sina.username = res['screen_name'];
                     MixOne.Status.Sina.username = res['screen_name'];
                     MixOne.Status.Sina.login = true;
                     MixOne.Auth.Sina.login = true;
+                    //MixOne.Status.Sina.avart = 'url';
+                    console.log('mixone.js-->sina username:'+MixOne.Status.Sina.username);
 
-                    console.log(MixOne.Status.Sina.username);
-
+                    MixOne.loginPromise.Sina.name = res['screen_name'];
+                    MixOne.loginPromise.Sina.type = 'sina';
                     localStorage.setItem('status', JSON.stringify(MixOne.Status));
                     localStorage.setItem('auth', JSON.stringify(MixOne.Auth));
                 }
                 else {
                     MixOne.Auth.Sina.login = false;
                     MixOne.Status.Sina.login = false;
+                    
                 }
             }
         }
@@ -595,27 +639,23 @@
     }
     /* for renren */
 
-    //var page = WinJS.UI.Pages.define("/www/default.html", {
-    //    ready: function (element, options) {
-            
-    //    }
-    //});
+    function _initMixone() {
 
-    function initMixone() {
-        getIpAddress();
-        
-
-        var auth = localStorage.getItem('auth');
-
-        if (auth !== null && auth !== '[object Object]') {
-            MixOne.Auth = JSON.parse(auth);
+        if (checkNetwork()) {
+            try {
+                //setTimeout();
+                getIpAddress();
+            }
+            catch (err) {
+                console.log("line: 649; mixone.js get ipaddress error :"+err);
+            }
         }
-
+            
 
         WinJS.Namespace.define('MixOne', MixOne);
     }
 
     _init();
-    initMixone();
+    _initMixone();
 })();
 

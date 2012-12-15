@@ -1,9 +1,4 @@
 ﻿
-//var commentTemplate = WinJS.Utilities.markSupportedForProcessing(function commentTemplate(itemPromise) {
-
-//});
-
-
 (function () {
 
     'use strict';
@@ -23,25 +18,18 @@
             var guid = '', from = '';
             var detailSrc = document.getElementById('detailSource');
             var listView = element.querySelector('#detaillistview').winControl;
-            if (options && options.src && options.src.id) {
-                guid = options.src.id.slice(4);
-                from = options.src.id.slice(0, 4);
+            if (options && options.src) {
+
+                if (options.src.id) {
+                    guid = options.src.id.slice(4);
+                    from = options.src.id.slice(0, 4);
+                }
+                
                 detailSrc.textContent = '（' + options.src.source + '）';
                 console.log(from + '---' + guid);
                 //getComments(from, guid, element);
+                initTweets(options.src);
             }
-
-
-            /**
-            * log all values in options.src
-            * can't use options.src.length
-            */
-            //if (options && options.src) {
-            //    for (var i in options.src) {
-            //        console.log(options.src[i]);
-            //    }
-                
-            //}
 
         },
 
@@ -55,5 +43,27 @@
             // TODO: 响应 viewState 的更改。
         }
     });
+
+    function initTweets(data) {
+
+        var avart = document.getElementById('user_avart'),
+            username = document.getElementById('detail_username'),
+            tweetText = document.getElementById('detail_text'),
+            retweetUser = document.getElementById('detail_retweetUser'),
+            retweetText = document.getElementById('detail_retweetText'),
+            box_retweeted = document.getElementById('detail_retweeted');
+
+        avart.src = data.avart;
+        username.textContent = data.name;
+        tweetText.textContent = data.text;
+
+        if (data.retweet) {
+            retweetUser.textContent = data.retweet.name;
+            retweetText.textContent = data.retweet.text;
+        }
+        else {
+            box_retweeted.style.display = 'none';
+        }
+    }
 
 })();

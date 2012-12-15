@@ -1,91 +1,77 @@
-﻿.userAvart {
-	display: block;
-	float: left;
-	width: auto;
-	height: 100%;
-	margin-left: .3em;
-}
+﻿/*****/
 
-.textContent {
-	display: block;
-	margin-left: 60px;
-	padding: 0;
-	width: auto;
-	height: auto;
-}
-
-.clearfix {
-	clear: both;
-}
-
-.retweeted {
-	background: #5A9BD3;
-	margin: 0.9em 1em 0 0.5em;
-	width: auto;
-	position: relative;
-	border-radius: 2px 0 0 0;
-	padding: .5em;
-    text-indent: 0.2em;
-    height: 200px;
-    overflow: hidden;
-}
-
-.retweeted:after, .retweeted:before {
-	bottom: 100%;
-	border: solid transparent;
-	content: ' ';
-	height: 0;
-	width: 0;
-	position: absolute;
-    
-}
-
-.retweeted:after {
-	border-color: rgba(136,183,213,0);
-	border-bottom-color: #5A9BD3;
-	border-width: 9px;
-	left: 13px;
-	margin-left: -9px;
-	
-}
-
-.retweeted:before {
-	border-color: rgba(194,225,245,0);
-	border-bottom-color: #5A9BD3;
-	border-width: 12px;
-	left: 13px;
-	margin-left: -12px;
-}
-
-.screen_name {
-	color: #00004f;
-}
-
-.win-listview, .win-container {
-    background-color: #DBEAF9;
-}
-
-ul {
-    list-style: none;
-}
-
-@media screen and (min-width: 400px)
+@media (-ms-view-state: fullscreen-landscape)
 {
 	body {
-		background-color: #DBEAF9;
+		background-color: #B8E768;
 		width:100%;
 		height: auto;
 	}
-	
-	#header {
-		width: 100%;
-		height: 10em;
-		position: relative;
-	}
+
+    #news_header {
+        margin-left: 3vw;
+        height: 10vh;
+    }
+
+    #newsContent {
+        width: 100%;
+        height: 90vh;
+    }
+
+    #newsList {
+        width: 100%;
+        height: 90vh;
+    }
+
+    /*.win-listview, .win-container {
+        background-color: #B8E768;
+    }*/
+
+    #basicMessageListView {
+        width: 100%;
+        height: 90vh;
+        background-color: #B8E768;
+    }
+
+    #basicMessageListView .win-container {
+        height: auto !important;
+        /*float: left;*/
+        font-size: 13pt;
+    }
+
+    /*.win-container[class='itemList'] {
+        height: 40vh;
+    }
+
+    .win-container[class='newsItemAllScreen'] {
+        height: 83vh;
+    }*/
+
+    /*#basicMessageListView .win-container .newsItemAllScreen {
+        clear: both;
+    }*/
+
+    .itemList {
+        width: 23vw;
+        height: 40vh;
+        background-color: #DBEAF9;
+        padding: 10px;
+        display: -ms-grid;
+    }
+
+    .newsItemAllScreen {
+        width: 23vw;
+        height: 83vh;
+        background-color: #DBEAF9;
+        padding: 10px;
+        display: -ms-grid;
+        clear: both;
+    }
 
     .userAvart {
-	    display: inline-block;
+	    display: block;
 	    float: left;
+	    width: auto;
 	    height: 100%;
 	    margin-left: .3em;
     }
@@ -95,32 +81,41 @@ ul {
 	    margin-left: 60px;
 	    padding: 0;
 	    width: auto;
-	    max-height: 200px;
+        max-width: 80%;
+        height: auto;
+        min-height: 30vh;
+	    max-height: 80%;
+    }
+
+    .textMainContainer {
+        margin-top: .3vh;
+        max-width: 23vw;
+        width: auto;
+        display: block;
+        overflow: hidden;
     }
 
     .retweeted {
 	    background: #5A9BD3;
-	    margin: 0.9em 1em 0 0.5em;
+	    margin: 0.3vh 0.9vw 0 0.7vw;
 	    width: auto;
+        max-width: 18vw;
 	    position: relative;
 	    border-radius: 6px 5px 5px 5px;
 	    padding: .5em;
+        height: auto;
+        text-indent: .5em;
         overflow: hidden;
     }
 
-    .retweeted:after, #retweeted:before {
+    .retweeted:after, .retweeted:before {
 	    bottom: 100%;
 	    border: solid transparent;
 	    content: ' ';
 	    height: 0;
 	    width: 0;
 	    position: absolute;
-
-    }
-
-    .tweetMessage {
-	    margin: 0;
-	    padding: 0;
+    
     }
 
     .retweeted:after {
@@ -144,33 +139,9 @@ ul {
 	    color: #00004f;
     }
 
-    #newsContent {
-        width: 100%;
-        height: 100%;
-    }
-
-    .itemList {
-        width: 300px;
-        height: 270px;
-        background-color: #DBEAF9;
-        padding: 10px;
-    }
-
-    .win-listview {
-        width: 100%;
-        height: 650px;
-        background-color: #DBEAF9;
-    }
-
-    .win-container {
-        background-color: #DBEAF9;
-    }
-
-    .textMainContainer {
-        max-height: 200px;
-        width: 100%;
-        display: block;
-        overflow: hidden;
+    .tweetMessage {
+	    margin: 0;
+	    padding: 0;
     }
 
     .messageTime {
@@ -182,7 +153,7 @@ ul {
 	    position: absolute;
         bottom: 0.5em;
         left: 1em;
-        width: 18em;
+        width: 21vw;
         height: 1.5em;
         text-indent: 1.5em;
     }
@@ -202,14 +173,14 @@ ul {
 }
 
 
-@media screen and (max-width: 400px)
+@media (-ms-view-state: snapped)
 {
 	body {
 		width: 100%;
 		height: auto;
 	}
 	
-	#header {
+	#news_header {
 		display: none;
 	}
 	
@@ -224,4 +195,14 @@ ul {
 	}
 	
 }
+
+@media screen and (-ms-view-state: filled) {
+}
+
+@media (-ms-view-state: fullscreen-portrait) {
+
+}
+
+
+
 

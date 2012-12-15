@@ -1,11 +1,70 @@
 ﻿body {
+    font-size: 2vh !important;
+    
+}
+
+#loginMainContent {
+
+    margin-left: 6vw;
+    margin-top: 5vh;
 
 }
 
 
-#loginMainContent {
+#login_Buttons {
+    list-style: none;
+}
 
-    margin-left: 140px;
-    margin-top: 100px;
+@media (-ms-view-state: fullscreen-landscape) {
+
+    .pagetitle {
+        font-size: 38pt;
+        margin-left: 2.8vw;
+    }
+
+    #login_Buttons {
+        list-style: none;
+        width: 82vw;
+        height: auto;
+    }
+
+    #login_Buttons li {
+
+        float: left;
+        width: 80vw;
+        margin-left: .5vw;
+        height: 10vh;
+        font-size: 3.5vh;
+        line-height: 10vh;
+        letter-spacing: 0.15em;
+    }
+
+    .login_spanButton {
+        display: inline-block;
+        background-color: #558600;
+        width: 18vw;
+        height: 8vh;
+        line-height: 8vh;
+        vertical-align: middle;
+        text-align: center;
+        box-shadow: 2px 2px 2px #fff, 2px -2px 2px #fff, -2px 2px 2px #fff, -2px -2px 2px #fff;
+    }
+
+    .login_spanButton:hover {
+        background-color: #34B101;
+        border: none;
+    }
+
+    .describeText {
+        font-size: 14pt;
+        color: #915300;
+        margin-left: 1.5vw;
+    }
+}
+
+@media (-ms-view-state: snapped) {
+}
+
+@media (-ms-view-state: fullscreen-portrait) {
 
 }
