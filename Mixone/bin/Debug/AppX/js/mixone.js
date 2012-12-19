@@ -579,7 +579,12 @@
                         if (res[i]['bmiddle_pic']) {
                             o.image = res[i]['bmiddle_pic'];
                         }
-
+                        /**
+                        * 这里出现了一个错误(Error)
+                        * 当一条微博被删除后，依然可以取到text
+                        * 但是，后面的screen_name就不能取到了。因而需要try...catch...
+                        * 
+                        */
                         if (res[i]['retweeted_status']) {
                             var twe = res[i]['retweeted_status'];
                             o.retweet = {};
