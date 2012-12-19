@@ -6,7 +6,11 @@
     var oauth = MixOne.Auth || JSON.parse(localStorage.getItem('auth')),
     _status = MixOne.Status || JSON.parse(localStorage.getItem('status')),
     loginPromise = MixOne.loginPromise;
-
+    /**
+     * Bug issue init_1!
+     * code here will be execute twice.
+     * need to fix!
+     **/
     var page = WinJS.UI.Pages.define("/www/init/index.html", {
         // 每当用户导航至此页面时都要调用此功能。它
         // 使用应用程序的数据填充页面元素。

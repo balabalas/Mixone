@@ -16,6 +16,10 @@
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
 
+            if (app.sessionState.history) {
+                nav.history = app.sessionState.history;
+            }
+
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: 此应用程序刚刚启动。在此处初始化
                 //您的应用程序。
@@ -24,6 +28,24 @@
                     console.log("network is " + MixOne.etc.checkNetwork());
                     console.log('after checking network status!');
                 }
+
+                args.setPromise(WinJS.UI.processAll().then(function () {
+
+                    var connect = networkInfo.getInternetConnectionProfile();
+
+                    if (connect !== null) {
+                        checkLogin();
+                    }
+                    else {
+                        _initNotLogin();
+                    }
+
+                    MixOne.loginPromise = loginPromise;
+                    MixOne.etc.checkLogin = checkLogin;
+
+                    return nav.navigate(defaultUrl);
+
+                }));
 
                 //return WinJS.Navigation.navigate(defaultUrl);
 
@@ -34,32 +56,6 @@
                 return nav.navigate(_url);
             }
 
-            if (app.sessionState.history) {
-                nav.history = app.sessionState.history;
-            }
-            args.setPromise(WinJS.UI.processAll().then(function () {
-                
-                var connect = networkInfo.getInternetConnectionProfile();
-                if (connect !== null) {
-                    checkLogin();
-                }
-                else {
-                    _initNotLogin();
-                }
-
-                MixOne.loginPromise = loginPromise;
-                MixOne.etc.checkLogin = checkLogin;
-
-                //if (nav.location) {
-                //    nav.history.current.initialPlaceholder = true;
-                //    return nav.navigate(nav.location, nav.state);
-                //} else {
-                //    return nav.navigate(Application.navigator.home);
-                //}
-
-                return nav.navigate(defaultUrl);
-
-            }));
         }
     };
 
